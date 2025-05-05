@@ -4,7 +4,7 @@
 // 	protoc        v3.21.12
 // source: sso/sso.proto
 
-package auth
+package sso
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -27,7 +27,7 @@ type RegisterRequest struct {
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
 	Login         string                 `protobuf:"bytes,3,opt,name=login,proto3" json:"login,omitempty"`
-	Api           string                 `protobuf:"bytes,4,opt,name=api,proto3" json:"api,omitempty"`
+	ApiKey        string                 `protobuf:"bytes,4,opt,name=api_key,json=apiKey,proto3" json:"api_key,omitempty"`
 	Services      []string               `protobuf:"bytes,5,rep,name=services,proto3" json:"services,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -84,9 +84,9 @@ func (x *RegisterRequest) GetLogin() string {
 	return ""
 }
 
-func (x *RegisterRequest) GetApi() string {
+func (x *RegisterRequest) GetApiKey() string {
 	if x != nil {
-		return x.Api
+		return x.ApiKey
 	}
 	return ""
 }
@@ -346,12 +346,12 @@ var File_sso_sso_proto protoreflect.FileDescriptor
 
 const file_sso_sso_proto_rawDesc = "" +
 	"\n" +
-	"\rsso/sso.proto\x12\aauth.v1\x1a\x1cgoogle/api/annotations.proto\"\x87\x01\n" +
+	"\rsso/sso.proto\x12\x04auth\x1a\x1cgoogle/api/annotations.proto\"\x8e\x01\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x14\n" +
-	"\x05login\x18\x03 \x01(\tR\x05login\x12\x10\n" +
-	"\x03api\x18\x04 \x01(\tR\x03api\x12\x1a\n" +
+	"\x05login\x18\x03 \x01(\tR\x05login\x12\x17\n" +
+	"\aapi_key\x18\x04 \x01(\tR\x06apiKey\x12\x1a\n" +
 	"\bservices\x18\x05 \x03(\tR\bservices\"+\n" +
 	"\x10RegisterResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\"@\n" +
@@ -366,11 +366,11 @@ const file_sso_sso_proto_rawDesc = "" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x1a\n" +
 	"\bservices\x18\x02 \x03(\tR\bservices\"'\n" +
 	"\rTokenResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\bR\x06result2\xf9\x01\n" +
-	"\x04Auth\x12X\n" +
-	"\bRegister\x12\x18.auth.v1.RegisterRequest\x1a\x19.auth.v1.RegisterResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v1/register\x12I\n" +
-	"\x05Login\x12\x15.auth.v1.LoginRequest\x1a\x16.auth.v1.LoginResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/v1/login\x12L\n" +
-	"\x05Token\x12\x15.auth.v1.TokenRequest\x1a\x16.auth.v1.TokenResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/tokenB\"Z github.com/lunyashon/protoc/authb\x06proto3"
+	"\x06result\x18\x01 \x01(\bR\x06result2\xf0\x01\n" +
+	"\x04Auth\x12R\n" +
+	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/v1/register\x12F\n" +
+	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/login\x12L\n" +
+	"\vCreateToken\x12\x12.auth.TokenRequest\x1a\x13.auth.TokenResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/tokenB\x14Z\x12service.sso.v1;ssob\x06proto3"
 
 var (
 	file_sso_sso_proto_rawDescOnce sync.Once
@@ -386,20 +386,20 @@ func file_sso_sso_proto_rawDescGZIP() []byte {
 
 var file_sso_sso_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_sso_sso_proto_goTypes = []any{
-	(*RegisterRequest)(nil),  // 0: auth.v1.RegisterRequest
-	(*RegisterResponse)(nil), // 1: auth.v1.RegisterResponse
-	(*LoginRequest)(nil),     // 2: auth.v1.LoginRequest
-	(*LoginResponse)(nil),    // 3: auth.v1.LoginResponse
-	(*TokenRequest)(nil),     // 4: auth.v1.TokenRequest
-	(*TokenResponse)(nil),    // 5: auth.v1.TokenResponse
+	(*RegisterRequest)(nil),  // 0: auth.RegisterRequest
+	(*RegisterResponse)(nil), // 1: auth.RegisterResponse
+	(*LoginRequest)(nil),     // 2: auth.LoginRequest
+	(*LoginResponse)(nil),    // 3: auth.LoginResponse
+	(*TokenRequest)(nil),     // 4: auth.TokenRequest
+	(*TokenResponse)(nil),    // 5: auth.TokenResponse
 }
 var file_sso_sso_proto_depIdxs = []int32{
-	0, // 0: auth.v1.Auth.Register:input_type -> auth.v1.RegisterRequest
-	2, // 1: auth.v1.Auth.Login:input_type -> auth.v1.LoginRequest
-	4, // 2: auth.v1.Auth.Token:input_type -> auth.v1.TokenRequest
-	1, // 3: auth.v1.Auth.Register:output_type -> auth.v1.RegisterResponse
-	3, // 4: auth.v1.Auth.Login:output_type -> auth.v1.LoginResponse
-	5, // 5: auth.v1.Auth.Token:output_type -> auth.v1.TokenResponse
+	0, // 0: auth.Auth.Register:input_type -> auth.RegisterRequest
+	2, // 1: auth.Auth.Login:input_type -> auth.LoginRequest
+	4, // 2: auth.Auth.CreateToken:input_type -> auth.TokenRequest
+	1, // 3: auth.Auth.Register:output_type -> auth.RegisterResponse
+	3, // 4: auth.Auth.Login:output_type -> auth.LoginResponse
+	5, // 5: auth.Auth.CreateToken:output_type -> auth.TokenResponse
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

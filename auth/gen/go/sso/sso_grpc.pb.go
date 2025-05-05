@@ -4,7 +4,7 @@
 // - protoc             v3.21.12
 // source: sso/sso.proto
 
-package auth
+package sso
 
 import (
 	context "context"
@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_Register_FullMethodName = "/auth.v1.Auth/Register"
-	Auth_Login_FullMethodName    = "/auth.v1.Auth/Login"
-	Auth_Token_FullMethodName    = "/auth.v1.Auth/Token"
+	Auth_Register_FullMethodName    = "/auth.Auth/Register"
+	Auth_Login_FullMethodName       = "/auth.Auth/Login"
+	Auth_CreateToken_FullMethodName = "/auth.Auth/CreateToken"
 )
 
 // AuthClient is the client API for Auth service.
@@ -30,7 +30,7 @@ const (
 type AuthClient interface {
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
-	Token(ctx context.Context, in *TokenRequest, opts ...grpc.CallOption) (*TokenResponse, error)
+	CreateToken(ctx context.Context, in *TokenRequest, opts ...grpc.CallOption) (*TokenResponse, error)
 }
 
 type authClient struct {
@@ -61,10 +61,10 @@ func (c *authClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.C
 	return out, nil
 }
 
-func (c *authClient) Token(ctx context.Context, in *TokenRequest, opts ...grpc.CallOption) (*TokenResponse, error) {
+func (c *authClient) CreateToken(ctx context.Context, in *TokenRequest, opts ...grpc.CallOption) (*TokenResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(TokenResponse)
-	err := c.cc.Invoke(ctx, Auth_Token_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_CreateToken_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -77,7 +77,7 @@ func (c *authClient) Token(ctx context.Context, in *TokenRequest, opts ...grpc.C
 type AuthServer interface {
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
-	Token(context.Context, *TokenRequest) (*TokenResponse, error)
+	CreateToken(context.Context, *TokenRequest) (*TokenResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -94,8 +94,8 @@ func (UnimplementedAuthServer) Register(context.Context, *RegisterRequest) (*Reg
 func (UnimplementedAuthServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
-func (UnimplementedAuthServer) Token(context.Context, *TokenRequest) (*TokenResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Token not implemented")
+func (UnimplementedAuthServer) CreateToken(context.Context, *TokenRequest) (*TokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateToken not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
 func (UnimplementedAuthServer) testEmbeddedByValue()              {}
@@ -154,20 +154,20 @@ func _Auth_Login_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_Token_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_CreateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TokenRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).Token(ctx, in)
+		return srv.(AuthServer).CreateToken(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_Token_FullMethodName,
+		FullMethod: Auth_CreateToken_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).Token(ctx, req.(*TokenRequest))
+		return srv.(AuthServer).CreateToken(ctx, req.(*TokenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -176,7 +176,7 @@ func _Auth_Token_Handler(srv interface{}, ctx context.Context, dec func(interfac
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Auth_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.v1.Auth",
+	ServiceName: "auth.Auth",
 	HandlerType: (*AuthServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -188,8 +188,8 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Auth_Login_Handler,
 		},
 		{
-			MethodName: "Token",
-			Handler:    _Auth_Token_Handler,
+			MethodName: "CreateToken",
+			Handler:    _Auth_CreateToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
