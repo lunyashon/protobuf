@@ -1,6 +1,6 @@
 syntax = "proto3";
-package auth;
-option go_package = "service.sso.v1;sso";
+package sso.v1;
+option go_package = "sso/v1;ssov1";
 
 import "google/api/annotations.proto";  
 
