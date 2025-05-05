@@ -1,4 +1,4 @@
-module github.com/lunyashon/protobuf
+module github.com/lunyashon/protobuf/auth
 
 go 1.24.2
 
