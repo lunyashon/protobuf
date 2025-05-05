@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.21.12
-// source: sso/sso.proto
+// source: sso/v1/sso.proto
 
-package sso
+package ssov1
 
 import (
 	context "context"
@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_Register_FullMethodName    = "/auth.Auth/Register"
-	Auth_Login_FullMethodName       = "/auth.Auth/Login"
-	Auth_CreateToken_FullMethodName = "/auth.Auth/CreateToken"
+	Auth_Register_FullMethodName    = "/sso.v1.Auth/Register"
+	Auth_Login_FullMethodName       = "/sso.v1.Auth/Login"
+	Auth_CreateToken_FullMethodName = "/sso.v1.Auth/CreateToken"
 )
 
 // AuthClient is the client API for Auth service.
@@ -176,7 +176,7 @@ func _Auth_CreateToken_Handler(srv interface{}, ctx context.Context, dec func(in
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Auth_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.Auth",
+	ServiceName: "sso.v1.Auth",
 	HandlerType: (*AuthServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -193,5 +193,5 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "sso/sso.proto",
+	Metadata: "sso/v1/sso.proto",
 }
