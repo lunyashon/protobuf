@@ -7,19 +7,19 @@ import "google/api/annotations.proto";
 service Auth {
     rpc Register (RegisterRequest) returns (RegisterResponse) {
         option (google.api.http) = {
-            post: "/v1/register"
+            post: "/v1/user/register"
             body: "*"
         };
     }
     rpc Login (LoginRequest) returns (LoginResponse) {
         option (google.api.http) = {
-            post: "/v1/login"
+            post: "/v1/user/login"
             body: "*"
         };
     }
     rpc CreateToken (TokenRequest) returns (TokenResponse) {
         option (google.api.http) = {
-            post: "/v1/token"
+            post: "/v1/user/token"
             body: "*"
         };
     }
