@@ -16,7 +16,7 @@
     "application/json"
   ],
   "paths": {
-    "/v1/login": {
+    "/v1/user/login": {
       "post": {
         "operationId": "Auth_Login",
         "responses": {
@@ -48,7 +48,7 @@
         ]
       }
     },
-    "/v1/register": {
+    "/v1/user/register": {
       "post": {
         "operationId": "Auth_Register",
         "responses": {
@@ -80,7 +80,7 @@
         ]
       }
     },
-    "/v1/token": {
+    "/v1/user/token": {
       "post": {
         "operationId": "Auth_CreateToken",
         "responses": {
