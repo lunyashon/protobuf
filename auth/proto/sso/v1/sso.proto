@@ -23,12 +23,13 @@ service Auth {
             body: "*"
         };
     }
-    rpc Auth (AuthRequest) returns (AuthResponse) {
+    rpc RevokeToken (RevokeRequest) returns (RevokeResponse) {
         option (google.api.http) = {
-            post: "/v1/user/auth"
+            post: "/v1/user/exit"
             body: "*"
         };
     }
+    rpc GetJWKS (Empty) returns (JWKSResponse);
 }
 
 message RegisterRequest {
@@ -49,8 +50,8 @@ message LoginRequest {
 }
 
 message LoginResponse {
-    string token = 1;
-    repeated string services_id = 2;
+    string accessToken = 1;
+    string refreshToken = 2;
 }
 
 message TokenRequest {
@@ -62,13 +63,24 @@ message TokenResponse {
     bool result = 1;
 }
 
-message AuthRequest {
+message RevokeRequest {
     string token = 1;
 }
 
-message AuthResponse {
-    bool valid = 1;
-    int64 user_id = 2;
-    repeated string services = 3;
-    string error = 4;
+message RevokeResponse {
+    bool success = 1;
+}
+
+message Empty {}
+
+message JWKSResponse {
+    repeated JWK keys = 1;
+}
+
+message JWK {
+    string kty = 1;
+    string kid = 2;
+    string n = 3;
+    string e = 4;
+    string alg = 5;
 }
