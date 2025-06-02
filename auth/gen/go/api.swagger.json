@@ -16,14 +16,14 @@
     "application/json"
   ],
   "paths": {
-    "/v1/user/auth": {
+    "/v1/user/exit": {
       "post": {
-        "operationId": "Auth_Auth",
+        "operationId": "Auth_RevokeToken",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1AuthResponse"
+              "$ref": "#/definitions/v1RevokeResponse"
             }
           },
           "default": {
@@ -39,7 +39,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1AuthRequest"
+              "$ref": "#/definitions/v1RevokeRequest"
             }
           }
         ],
@@ -174,32 +174,35 @@
         }
       }
     },
-    "v1AuthRequest": {
+    "v1JWK": {
       "type": "object",
       "properties": {
-        "token": {
+        "kty": {
+          "type": "string"
+        },
+        "kid": {
+          "type": "string"
+        },
+        "n": {
+          "type": "string"
+        },
+        "e": {
+          "type": "string"
+        },
+        "alg": {
           "type": "string"
         }
       }
     },
-    "v1AuthResponse": {
+    "v1JWKSResponse": {
       "type": "object",
       "properties": {
-        "valid": {
-          "type": "boolean"
-        },
-        "userId": {
-          "type": "string",
-          "format": "int64"
-        },
-        "services": {
+        "keys": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "object",
+            "$ref": "#/definitions/v1JWK"
           }
-        },
-        "error": {
-          "type": "string"
         }
       }
     },
@@ -217,14 +220,11 @@
     "v1LoginResponse": {
       "type": "object",
       "properties": {
-        "token": {
+        "accessToken": {
           "type": "string"
         },
-        "servicesId": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+        "refreshToken": {
+          "type": "string"
         }
       }
     },
@@ -257,6 +257,22 @@
         "userId": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "v1RevokeRequest": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "v1RevokeResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
         }
       }
     },
