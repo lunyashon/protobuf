@@ -189,7 +189,8 @@
           "type": "boolean"
         },
         "userId": {
-          "type": "string"
+          "type": "string",
+          "format": "int64"
         },
         "services": {
           "type": "array",

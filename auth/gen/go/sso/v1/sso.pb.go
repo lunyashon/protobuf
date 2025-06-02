@@ -389,7 +389,7 @@ func (x *AuthRequest) GetToken() string {
 type AuthResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Valid         bool                   `protobuf:"varint,1,opt,name=valid,proto3" json:"valid,omitempty"`
-	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        int64                  `protobuf:"varint,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Services      []string               `protobuf:"bytes,3,rep,name=services,proto3" json:"services,omitempty"`
 	Error         string                 `protobuf:"bytes,4,opt,name=error,proto3" json:"error,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -433,11 +433,11 @@ func (x *AuthResponse) GetValid() bool {
 	return false
 }
 
-func (x *AuthResponse) GetUserId() string {
+func (x *AuthResponse) GetUserId() int64 {
 	if x != nil {
 		return x.UserId
 	}
-	return ""
+	return 0
 }
 
 func (x *AuthResponse) GetServices() []string {
@@ -483,7 +483,7 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x05token\x18\x01 \x01(\tR\x05token\"o\n" +
 	"\fAuthResponse\x12\x14\n" +
 	"\x05valid\x18\x01 \x01(\bR\x05valid\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1a\n" +
+	"\auser_id\x18\x02 \x01(\x03R\x06userId\x12\x1a\n" +
 	"\bservices\x18\x03 \x03(\tR\bservices\x12\x14\n" +
 	"\x05error\x18\x04 \x01(\tR\x05error2\xd8\x02\n" +
 	"\x04Auth\x12[\n" +
