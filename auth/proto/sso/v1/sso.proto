@@ -29,6 +29,8 @@ service Auth {
             body: "*"
         };
     }
+    rpc ValidateToken (ValidateRequest) returns (ValidateResponse);
+    rpc RefreshToken (RefreshRequest) returns (RefreshResponse);
     rpc GetJWKS (Empty) returns (JWKSResponse);
 }
 
@@ -36,7 +38,7 @@ message RegisterRequest {
     string email = 1;
     string password = 2;
     string login = 3;
-    string api_key = 4;
+    string apiKey = 4;
     repeated string services = 5;
 }
 
@@ -83,4 +85,23 @@ message JWK {
     string n = 3;
     string e = 4;
     string alg = 5;
+}
+
+message ValidateRequest {
+    string accessToken = 1;
+}
+
+message ValidateResponse {
+    int64 userID = 1;
+    repeated string services = 2;
+}
+
+message RefreshRequest {
+    string refreshToken = 1;
+}
+
+message RefreshResponse {
+    string accessToken = 1;
+    string refreshToken = 2;
+    int64 expiresIn = 3;
 }
