@@ -228,6 +228,21 @@
         }
       }
     },
+    "v1RefreshResponse": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        },
+        "refreshToken": {
+          "type": "string"
+        },
+        "expiresIn": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "v1RegisterRequest": {
       "type": "object",
       "properties": {
@@ -295,6 +310,21 @@
       "properties": {
         "result": {
           "type": "boolean"
+        }
+      }
+    },
+    "v1ValidateResponse": {
+      "type": "object",
+      "properties": {
+        "userID": {
+          "type": "string",
+          "format": "int64"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }
