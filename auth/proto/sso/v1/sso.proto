@@ -94,7 +94,6 @@ message ValidateRequest {
 
 message ValidateResponse {
     int64 userID = 1;
-    repeated string services = 2;
 }
 
 message RefreshRequest {
