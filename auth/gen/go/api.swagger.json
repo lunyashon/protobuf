@@ -319,12 +319,6 @@
         "userID": {
           "type": "string",
           "format": "int64"
-        },
-        "services": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         }
       }
     }

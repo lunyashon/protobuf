@@ -641,7 +641,6 @@ func (x *ValidateRequest) GetService() string {
 type ValidateResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserID        int64                  `protobuf:"varint,1,opt,name=userID,proto3" json:"userID,omitempty"`
-	Services      []string               `protobuf:"bytes,2,rep,name=services,proto3" json:"services,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -681,13 +680,6 @@ func (x *ValidateResponse) GetUserID() int64 {
 		return x.UserID
 	}
 	return 0
-}
-
-func (x *ValidateResponse) GetServices() []string {
-	if x != nil {
-		return x.Services
-	}
-	return nil
 }
 
 type RefreshRequest struct {
@@ -833,10 +825,9 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x03alg\x18\x05 \x01(\tR\x03alg\"M\n" +
 	"\x0fValidateRequest\x12 \n" +
 	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\x12\x18\n" +
-	"\aservice\x18\x02 \x01(\tR\aservice\"F\n" +
+	"\aservice\x18\x02 \x01(\tR\aservice\"*\n" +
 	"\x10ValidateResponse\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\x03R\x06userID\x12\x1a\n" +
-	"\bservices\x18\x02 \x03(\tR\bservices\"4\n" +
+	"\x06userID\x18\x01 \x01(\x03R\x06userID\"4\n" +
 	"\x0eRefreshRequest\x12\"\n" +
 	"\frefreshToken\x18\x01 \x01(\tR\frefreshToken\"u\n" +
 	"\x0fRefreshResponse\x12 \n" +
