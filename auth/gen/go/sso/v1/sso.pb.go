@@ -589,6 +589,7 @@ func (x *JWK) GetAlg() string {
 type ValidateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AccessToken   string                 `protobuf:"bytes,1,opt,name=accessToken,proto3" json:"accessToken,omitempty"`
+	Service       string                 `protobuf:"bytes,2,opt,name=service,proto3" json:"service,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -626,6 +627,13 @@ func (*ValidateRequest) Descriptor() ([]byte, []int) {
 func (x *ValidateRequest) GetAccessToken() string {
 	if x != nil {
 		return x.AccessToken
+	}
+	return ""
+}
+
+func (x *ValidateRequest) GetService() string {
+	if x != nil {
+		return x.Service
 	}
 	return ""
 }
@@ -822,9 +830,10 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x03kid\x18\x02 \x01(\tR\x03kid\x12\f\n" +
 	"\x01n\x18\x03 \x01(\tR\x01n\x12\f\n" +
 	"\x01e\x18\x04 \x01(\tR\x01e\x12\x10\n" +
-	"\x03alg\x18\x05 \x01(\tR\x03alg\"3\n" +
+	"\x03alg\x18\x05 \x01(\tR\x03alg\"M\n" +
 	"\x0fValidateRequest\x12 \n" +
-	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\"F\n" +
+	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\x12\x18\n" +
+	"\aservice\x18\x02 \x01(\tR\aservice\"F\n" +
 	"\x10ValidateResponse\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\x03R\x06userID\x12\x1a\n" +
 	"\bservices\x18\x02 \x03(\tR\bservices\"4\n" +
