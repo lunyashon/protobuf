@@ -89,6 +89,7 @@ message JWK {
 
 message ValidateRequest {
     string accessToken = 1;
+    string service = 2;
 }
 
 message ValidateResponse {
