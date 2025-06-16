@@ -16,38 +16,6 @@
     "application/json"
   ],
   "paths": {
-    "/v1/user/exit": {
-      "post": {
-        "operationId": "Auth_RevokeToken",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1RevokeResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1RevokeRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Auth"
-        ]
-      }
-    },
     "/v1/user/login": {
       "post": {
         "operationId": "Auth_Login",
@@ -72,6 +40,38 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/v1LoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1/user/logout": {
+      "post": {
+        "operationId": "Auth_Logout",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LogoutRequest"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1LogoutRequest"
             }
           }
         ],
@@ -228,6 +228,17 @@
         }
       }
     },
+    "v1LogoutRequest": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        },
+        "refreshToken": {
+          "type": "string"
+        }
+      }
+    },
     "v1RefreshResponse": {
       "type": "object",
       "properties": {
@@ -272,22 +283,6 @@
         "userId": {
           "type": "string",
           "format": "int64"
-        }
-      }
-    },
-    "v1RevokeRequest": {
-      "type": "object",
-      "properties": {
-        "token": {
-          "type": "string"
-        }
-      }
-    },
-    "v1RevokeResponse": {
-      "type": "object",
-      "properties": {
-        "success": {
-          "type": "boolean"
         }
       }
     },

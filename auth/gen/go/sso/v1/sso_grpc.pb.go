@@ -22,7 +22,7 @@ const (
 	Auth_Register_FullMethodName      = "/sso.v1.Auth/Register"
 	Auth_Login_FullMethodName         = "/sso.v1.Auth/Login"
 	Auth_CreateToken_FullMethodName   = "/sso.v1.Auth/CreateToken"
-	Auth_RevokeToken_FullMethodName   = "/sso.v1.Auth/RevokeToken"
+	Auth_Logout_FullMethodName        = "/sso.v1.Auth/Logout"
 	Auth_ValidateToken_FullMethodName = "/sso.v1.Auth/ValidateToken"
 	Auth_RefreshToken_FullMethodName  = "/sso.v1.Auth/RefreshToken"
 	Auth_GetJWKS_FullMethodName       = "/sso.v1.Auth/GetJWKS"
@@ -35,7 +35,7 @@ type AuthClient interface {
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	CreateToken(ctx context.Context, in *TokenRequest, opts ...grpc.CallOption) (*TokenResponse, error)
-	RevokeToken(ctx context.Context, in *RevokeRequest, opts ...grpc.CallOption) (*RevokeResponse, error)
+	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutRequest, error)
 	ValidateToken(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
 	RefreshToken(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error)
 	GetJWKS(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*JWKSResponse, error)
@@ -79,10 +79,10 @@ func (c *authClient) CreateToken(ctx context.Context, in *TokenRequest, opts ...
 	return out, nil
 }
 
-func (c *authClient) RevokeToken(ctx context.Context, in *RevokeRequest, opts ...grpc.CallOption) (*RevokeResponse, error) {
+func (c *authClient) Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutRequest, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RevokeResponse)
-	err := c.cc.Invoke(ctx, Auth_RevokeToken_FullMethodName, in, out, cOpts...)
+	out := new(LogoutRequest)
+	err := c.cc.Invoke(ctx, Auth_Logout_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -126,7 +126,7 @@ type AuthServer interface {
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	CreateToken(context.Context, *TokenRequest) (*TokenResponse, error)
-	RevokeToken(context.Context, *RevokeRequest) (*RevokeResponse, error)
+	Logout(context.Context, *LogoutRequest) (*LogoutRequest, error)
 	ValidateToken(context.Context, *ValidateRequest) (*ValidateResponse, error)
 	RefreshToken(context.Context, *RefreshRequest) (*RefreshResponse, error)
 	GetJWKS(context.Context, *Empty) (*JWKSResponse, error)
@@ -149,8 +149,8 @@ func (UnimplementedAuthServer) Login(context.Context, *LoginRequest) (*LoginResp
 func (UnimplementedAuthServer) CreateToken(context.Context, *TokenRequest) (*TokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateToken not implemented")
 }
-func (UnimplementedAuthServer) RevokeToken(context.Context, *RevokeRequest) (*RevokeResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RevokeToken not implemented")
+func (UnimplementedAuthServer) Logout(context.Context, *LogoutRequest) (*LogoutRequest, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
 }
 func (UnimplementedAuthServer) ValidateToken(context.Context, *ValidateRequest) (*ValidateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateToken not implemented")
@@ -236,20 +236,20 @@ func _Auth_CreateToken_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_RevokeToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RevokeRequest)
+func _Auth_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LogoutRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).RevokeToken(ctx, in)
+		return srv.(AuthServer).Logout(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_RevokeToken_FullMethodName,
+		FullMethod: Auth_Logout_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).RevokeToken(ctx, req.(*RevokeRequest))
+		return srv.(AuthServer).Logout(ctx, req.(*LogoutRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -328,8 +328,8 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Auth_CreateToken_Handler,
 		},
 		{
-			MethodName: "RevokeToken",
-			Handler:    _Auth_RevokeToken_Handler,
+			MethodName: "Logout",
+			Handler:    _Auth_Logout_Handler,
 		},
 		{
 			MethodName: "ValidateToken",
