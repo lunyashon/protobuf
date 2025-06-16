@@ -342,27 +342,28 @@ func (x *TokenResponse) GetResult() bool {
 	return false
 }
 
-type RevokeRequest struct {
+type LogoutRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	AccessToken   string                 `protobuf:"bytes,1,opt,name=accessToken,proto3" json:"accessToken,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refreshToken,proto3" json:"refreshToken,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RevokeRequest) Reset() {
-	*x = RevokeRequest{}
+func (x *LogoutRequest) Reset() {
+	*x = LogoutRequest{}
 	mi := &file_sso_v1_sso_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RevokeRequest) String() string {
+func (x *LogoutRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RevokeRequest) ProtoMessage() {}
+func (*LogoutRequest) ProtoMessage() {}
 
-func (x *RevokeRequest) ProtoReflect() protoreflect.Message {
+func (x *LogoutRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_sso_v1_sso_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -374,39 +375,47 @@ func (x *RevokeRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RevokeRequest.ProtoReflect.Descriptor instead.
-func (*RevokeRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use LogoutRequest.ProtoReflect.Descriptor instead.
+func (*LogoutRequest) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *RevokeRequest) GetToken() string {
+func (x *LogoutRequest) GetAccessToken() string {
 	if x != nil {
-		return x.Token
+		return x.AccessToken
 	}
 	return ""
 }
 
-type RevokeResponse struct {
+func (x *LogoutRequest) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+type LogoutResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RevokeResponse) Reset() {
-	*x = RevokeResponse{}
+func (x *LogoutResponse) Reset() {
+	*x = LogoutResponse{}
 	mi := &file_sso_v1_sso_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RevokeResponse) String() string {
+func (x *LogoutResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RevokeResponse) ProtoMessage() {}
+func (*LogoutResponse) ProtoMessage() {}
 
-func (x *RevokeResponse) ProtoReflect() protoreflect.Message {
+func (x *LogoutResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_sso_v1_sso_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -418,16 +427,23 @@ func (x *RevokeResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RevokeResponse.ProtoReflect.Descriptor instead.
-func (*RevokeResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use LogoutResponse.ProtoReflect.Descriptor instead.
+func (*LogoutResponse) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *RevokeResponse) GetSuccess() bool {
+func (x *LogoutResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
 	return false
+}
+
+func (x *LogoutResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
 }
 
 type Empty struct {
@@ -809,11 +825,13 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x1a\n" +
 	"\bservices\x18\x02 \x03(\tR\bservices\"'\n" +
 	"\rTokenResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\bR\x06result\"%\n" +
-	"\rRevokeRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"*\n" +
-	"\x0eRevokeResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"\a\n" +
+	"\x06result\x18\x01 \x01(\bR\x06result\"U\n" +
+	"\rLogoutRequest\x12 \n" +
+	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\x12\"\n" +
+	"\frefreshToken\x18\x02 \x01(\tR\frefreshToken\"D\n" +
+	"\x0eLogoutResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"\a\n" +
 	"\x05Empty\"/\n" +
 	"\fJWKSResponse\x12\x1f\n" +
 	"\x04keys\x18\x01 \x03(\v2\v.sso.v1.JWKR\x04keys\"W\n" +
@@ -833,12 +851,12 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x0fRefreshResponse\x12 \n" +
 	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\x12\"\n" +
 	"\frefreshToken\x18\x02 \x01(\tR\frefreshToken\x12\x1c\n" +
-	"\texpiresIn\x18\x03 \x01(\x03R\texpiresIn2\x98\x04\n" +
+	"\texpiresIn\x18\x03 \x01(\x03R\texpiresIn2\x94\x04\n" +
 	"\x04Auth\x12[\n" +
 	"\bRegister\x12\x17.sso.v1.RegisterRequest\x1a\x18.sso.v1.RegisterResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/user/register\x12O\n" +
 	"\x05Login\x12\x14.sso.v1.LoginRequest\x1a\x15.sso.v1.LoginResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/login\x12U\n" +
-	"\vCreateToken\x12\x14.sso.v1.TokenRequest\x1a\x15.sso.v1.TokenResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/token\x12V\n" +
-	"\vRevokeToken\x12\x15.sso.v1.RevokeRequest\x1a\x16.sso.v1.RevokeResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/user/exit\x12B\n" +
+	"\vCreateToken\x12\x14.sso.v1.TokenRequest\x1a\x15.sso.v1.TokenResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/token\x12R\n" +
+	"\x06Logout\x12\x15.sso.v1.LogoutRequest\x1a\x15.sso.v1.LogoutRequest\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/user/logout\x12B\n" +
 	"\rValidateToken\x12\x17.sso.v1.ValidateRequest\x1a\x18.sso.v1.ValidateResponse\x12?\n" +
 	"\fRefreshToken\x12\x16.sso.v1.RefreshRequest\x1a\x17.sso.v1.RefreshResponse\x12.\n" +
 	"\aGetJWKS\x12\r.sso.v1.Empty\x1a\x14.sso.v1.JWKSResponseB\x0eZ\fsso/v1;ssov1b\x06proto3"
@@ -863,8 +881,8 @@ var file_sso_v1_sso_proto_goTypes = []any{
 	(*LoginResponse)(nil),    // 3: sso.v1.LoginResponse
 	(*TokenRequest)(nil),     // 4: sso.v1.TokenRequest
 	(*TokenResponse)(nil),    // 5: sso.v1.TokenResponse
-	(*RevokeRequest)(nil),    // 6: sso.v1.RevokeRequest
-	(*RevokeResponse)(nil),   // 7: sso.v1.RevokeResponse
+	(*LogoutRequest)(nil),    // 6: sso.v1.LogoutRequest
+	(*LogoutResponse)(nil),   // 7: sso.v1.LogoutResponse
 	(*Empty)(nil),            // 8: sso.v1.Empty
 	(*JWKSResponse)(nil),     // 9: sso.v1.JWKSResponse
 	(*JWK)(nil),              // 10: sso.v1.JWK
@@ -878,14 +896,14 @@ var file_sso_v1_sso_proto_depIdxs = []int32{
 	0,  // 1: sso.v1.Auth.Register:input_type -> sso.v1.RegisterRequest
 	2,  // 2: sso.v1.Auth.Login:input_type -> sso.v1.LoginRequest
 	4,  // 3: sso.v1.Auth.CreateToken:input_type -> sso.v1.TokenRequest
-	6,  // 4: sso.v1.Auth.RevokeToken:input_type -> sso.v1.RevokeRequest
+	6,  // 4: sso.v1.Auth.Logout:input_type -> sso.v1.LogoutRequest
 	11, // 5: sso.v1.Auth.ValidateToken:input_type -> sso.v1.ValidateRequest
 	13, // 6: sso.v1.Auth.RefreshToken:input_type -> sso.v1.RefreshRequest
 	8,  // 7: sso.v1.Auth.GetJWKS:input_type -> sso.v1.Empty
 	1,  // 8: sso.v1.Auth.Register:output_type -> sso.v1.RegisterResponse
 	3,  // 9: sso.v1.Auth.Login:output_type -> sso.v1.LoginResponse
 	5,  // 10: sso.v1.Auth.CreateToken:output_type -> sso.v1.TokenResponse
-	7,  // 11: sso.v1.Auth.RevokeToken:output_type -> sso.v1.RevokeResponse
+	6,  // 11: sso.v1.Auth.Logout:output_type -> sso.v1.LogoutRequest
 	12, // 12: sso.v1.Auth.ValidateToken:output_type -> sso.v1.ValidateResponse
 	14, // 13: sso.v1.Auth.RefreshToken:output_type -> sso.v1.RefreshResponse
 	9,  // 14: sso.v1.Auth.GetJWKS:output_type -> sso.v1.JWKSResponse
