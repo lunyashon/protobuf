@@ -23,7 +23,7 @@ service Auth {
             body: "*"
         };
     }
-    rpc Logout (LogoutRequest) returns (LogoutRequest) {
+    rpc Logout (LogoutRequest) returns (LogoutResponse) {
         option (google.api.http) = {
             post: "/v1/user/logout"
             body: "*"
