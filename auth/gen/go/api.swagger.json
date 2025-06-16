@@ -55,7 +55,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1LogoutRequest"
+              "$ref": "#/definitions/v1LogoutResponse"
             }
           },
           "default": {
@@ -235,6 +235,17 @@
           "type": "string"
         },
         "refreshToken": {
+          "type": "string"
+        }
+      }
+    },
+    "v1LogoutResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
           "type": "string"
         }
       }

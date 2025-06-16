@@ -851,12 +851,12 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x0fRefreshResponse\x12 \n" +
 	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\x12\"\n" +
 	"\frefreshToken\x18\x02 \x01(\tR\frefreshToken\x12\x1c\n" +
-	"\texpiresIn\x18\x03 \x01(\x03R\texpiresIn2\x94\x04\n" +
+	"\texpiresIn\x18\x03 \x01(\x03R\texpiresIn2\x95\x04\n" +
 	"\x04Auth\x12[\n" +
 	"\bRegister\x12\x17.sso.v1.RegisterRequest\x1a\x18.sso.v1.RegisterResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/user/register\x12O\n" +
 	"\x05Login\x12\x14.sso.v1.LoginRequest\x1a\x15.sso.v1.LoginResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/login\x12U\n" +
-	"\vCreateToken\x12\x14.sso.v1.TokenRequest\x1a\x15.sso.v1.TokenResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/token\x12R\n" +
-	"\x06Logout\x12\x15.sso.v1.LogoutRequest\x1a\x15.sso.v1.LogoutRequest\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/user/logout\x12B\n" +
+	"\vCreateToken\x12\x14.sso.v1.TokenRequest\x1a\x15.sso.v1.TokenResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/token\x12S\n" +
+	"\x06Logout\x12\x15.sso.v1.LogoutRequest\x1a\x16.sso.v1.LogoutResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/user/logout\x12B\n" +
 	"\rValidateToken\x12\x17.sso.v1.ValidateRequest\x1a\x18.sso.v1.ValidateResponse\x12?\n" +
 	"\fRefreshToken\x12\x16.sso.v1.RefreshRequest\x1a\x17.sso.v1.RefreshResponse\x12.\n" +
 	"\aGetJWKS\x12\r.sso.v1.Empty\x1a\x14.sso.v1.JWKSResponseB\x0eZ\fsso/v1;ssov1b\x06proto3"
@@ -903,7 +903,7 @@ var file_sso_v1_sso_proto_depIdxs = []int32{
 	1,  // 8: sso.v1.Auth.Register:output_type -> sso.v1.RegisterResponse
 	3,  // 9: sso.v1.Auth.Login:output_type -> sso.v1.LoginResponse
 	5,  // 10: sso.v1.Auth.CreateToken:output_type -> sso.v1.TokenResponse
-	6,  // 11: sso.v1.Auth.Logout:output_type -> sso.v1.LogoutRequest
+	7,  // 11: sso.v1.Auth.Logout:output_type -> sso.v1.LogoutResponse
 	12, // 12: sso.v1.Auth.ValidateToken:output_type -> sso.v1.ValidateResponse
 	14, // 13: sso.v1.Auth.RefreshToken:output_type -> sso.v1.RefreshResponse
 	9,  // 14: sso.v1.Auth.GetJWKS:output_type -> sso.v1.JWKSResponse
