@@ -19,13 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_Register_FullMethodName      = "/sso.v1.Auth/Register"
-	Auth_Login_FullMethodName         = "/sso.v1.Auth/Login"
-	Auth_CreateToken_FullMethodName   = "/sso.v1.Auth/CreateToken"
-	Auth_Logout_FullMethodName        = "/sso.v1.Auth/Logout"
-	Auth_ValidateToken_FullMethodName = "/sso.v1.Auth/ValidateToken"
-	Auth_RefreshToken_FullMethodName  = "/sso.v1.Auth/RefreshToken"
-	Auth_GetJWKS_FullMethodName       = "/sso.v1.Auth/GetJWKS"
+	Auth_Register_FullMethodName          = "/sso.v1.Auth/Register"
+	Auth_Login_FullMethodName             = "/sso.v1.Auth/Login"
+	Auth_CreateToken_FullMethodName       = "/sso.v1.Auth/CreateToken"
+	Auth_Logout_FullMethodName            = "/sso.v1.Auth/Logout"
+	Auth_UpdateAccessToken_FullMethodName = "/sso.v1.Auth/UpdateAccessToken"
+	Auth_ValidateToken_FullMethodName     = "/sso.v1.Auth/ValidateToken"
+	Auth_RefreshToken_FullMethodName      = "/sso.v1.Auth/RefreshToken"
+	Auth_GetJWKS_FullMethodName           = "/sso.v1.Auth/GetJWKS"
 )
 
 // AuthClient is the client API for Auth service.
@@ -36,6 +37,7 @@ type AuthClient interface {
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	CreateToken(ctx context.Context, in *TokenRequest, opts ...grpc.CallOption) (*TokenResponse, error)
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
+	UpdateAccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenResponse, error)
 	ValidateToken(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
 	RefreshToken(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error)
 	GetJWKS(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*JWKSResponse, error)
@@ -89,6 +91,16 @@ func (c *authClient) Logout(ctx context.Context, in *LogoutRequest, opts ...grpc
 	return out, nil
 }
 
+func (c *authClient) UpdateAccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AccessTokenResponse)
+	err := c.cc.Invoke(ctx, Auth_UpdateAccessToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authClient) ValidateToken(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ValidateResponse)
@@ -127,6 +139,7 @@ type AuthServer interface {
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	CreateToken(context.Context, *TokenRequest) (*TokenResponse, error)
 	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
+	UpdateAccessToken(context.Context, *AccessTokenRequest) (*AccessTokenResponse, error)
 	ValidateToken(context.Context, *ValidateRequest) (*ValidateResponse, error)
 	RefreshToken(context.Context, *RefreshRequest) (*RefreshResponse, error)
 	GetJWKS(context.Context, *Empty) (*JWKSResponse, error)
@@ -151,6 +164,9 @@ func (UnimplementedAuthServer) CreateToken(context.Context, *TokenRequest) (*Tok
 }
 func (UnimplementedAuthServer) Logout(context.Context, *LogoutRequest) (*LogoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
+}
+func (UnimplementedAuthServer) UpdateAccessToken(context.Context, *AccessTokenRequest) (*AccessTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateAccessToken not implemented")
 }
 func (UnimplementedAuthServer) ValidateToken(context.Context, *ValidateRequest) (*ValidateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateToken not implemented")
@@ -254,6 +270,24 @@ func _Auth_Logout_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_UpdateAccessToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AccessTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).UpdateAccessToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_UpdateAccessToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).UpdateAccessToken(ctx, req.(*AccessTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Auth_ValidateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ValidateRequest)
 	if err := dec(in); err != nil {
@@ -330,6 +364,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Logout",
 			Handler:    _Auth_Logout_Handler,
+		},
+		{
+			MethodName: "UpdateAccessToken",
+			Handler:    _Auth_UpdateAccessToken_Handler,
 		},
 		{
 			MethodName: "ValidateToken",
