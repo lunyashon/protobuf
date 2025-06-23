@@ -29,7 +29,12 @@ service Auth {
             body: "*"
         };
     }
-    rpc UpdateAccessToken (AccessTokenRequest) returns (AccessTokenResponse);
+    rpc UpdateAccessToken (AccessTokenRequest) returns (AccessTokenResponse) {
+        option (google.api.http) = {
+            put: "/v1/user/update.access.token"
+            body: "*"
+        };
+    }
     rpc ValidateToken (ValidateRequest) returns (ValidateResponse);
     rpc RefreshToken (RefreshRequest) returns (RefreshResponse);
     rpc GetJWKS (Empty) returns (JWKSResponse);

@@ -943,13 +943,13 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x12AccessTokenRequest\x12\"\n" +
 	"\frefreshToken\x18\x01 \x01(\tR\frefreshToken\"7\n" +
 	"\x13AccessTokenResponse\x12 \n" +
-	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xe3\x04\n" +
+	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\x8c\x05\n" +
 	"\x04Auth\x12[\n" +
 	"\bRegister\x12\x17.sso.v1.RegisterRequest\x1a\x18.sso.v1.RegisterResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/user/register\x12O\n" +
 	"\x05Login\x12\x14.sso.v1.LoginRequest\x1a\x15.sso.v1.LoginResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/login\x12U\n" +
 	"\vCreateToken\x12\x14.sso.v1.TokenRequest\x1a\x15.sso.v1.TokenResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/token\x12S\n" +
-	"\x06Logout\x12\x15.sso.v1.LogoutRequest\x1a\x16.sso.v1.LogoutResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/user/logout\x12L\n" +
-	"\x11UpdateAccessToken\x12\x1a.sso.v1.AccessTokenRequest\x1a\x1b.sso.v1.AccessTokenResponse\x12B\n" +
+	"\x06Logout\x12\x15.sso.v1.LogoutRequest\x1a\x16.sso.v1.LogoutResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/user/logout\x12u\n" +
+	"\x11UpdateAccessToken\x12\x1a.sso.v1.AccessTokenRequest\x1a\x1b.sso.v1.AccessTokenResponse\"'\x82\xd3\xe4\x93\x02!:\x01*\x1a\x1c/v1/user/update.access.token\x12B\n" +
 	"\rValidateToken\x12\x17.sso.v1.ValidateRequest\x1a\x18.sso.v1.ValidateResponse\x12?\n" +
 	"\fRefreshToken\x12\x16.sso.v1.RefreshRequest\x1a\x17.sso.v1.RefreshResponse\x12.\n" +
 	"\aGetJWKS\x12\r.sso.v1.Empty\x1a\x14.sso.v1.JWKSResponseB\x0eZ\fsso/v1;ssov1b\x06proto3"
