@@ -35,9 +35,35 @@ service Auth {
             body: "*"
         };
     }
+    rpc ChangePassword (PasswordRequest) returns (PasswordResponse) {
+        option (google.api.http) = {
+            post: "/v1/user/password.change"
+            body: "*"
+        };
+    }
+    rpc ConfirmEmail (EmailRequest) returns (EmailResponse) {
+        option (google.api.http) = {
+            post: "/v1/user/email.confirm"
+            body: "*"
+        };
+    }
     rpc ValidateToken (ValidateRequest) returns (ValidateResponse);
     rpc RefreshToken (RefreshRequest) returns (RefreshResponse);
     rpc GetJWKS (Empty) returns (JWKSResponse);
+}
+
+message PasswordRequest {
+    string oldPassword = 1;
+}
+
+message PasswordResponse {
+    bool success = 1;
+}
+
+message EmailRequest {}
+
+message EmailResponse {
+    bool succes = 1;
 }
 
 message RegisterRequest {
@@ -72,8 +98,7 @@ message TokenResponse {
 }
 
 message LogoutRequest {
-    string accessToken = 1;
-    string refreshToken = 2;
+    string refreshToken = 1;
 }
 
 message LogoutResponse {
