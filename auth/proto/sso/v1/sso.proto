@@ -54,6 +54,7 @@ service Auth {
 
 message PasswordRequest {
     string oldPassword = 1;
+    string newPassword = 2;
 }
 
 message PasswordResponse {
@@ -63,7 +64,7 @@ message PasswordResponse {
 message EmailRequest {}
 
 message EmailResponse {
-    bool succes = 1;
+    bool success = 1;
 }
 
 message RegisterRequest {

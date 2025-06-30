@@ -292,7 +292,7 @@
     "v1EmailResponse": {
       "type": "object",
       "properties": {
-        "succes": {
+        "success": {
           "type": "boolean"
         }
       }
@@ -374,6 +374,9 @@
       "type": "object",
       "properties": {
         "oldPassword": {
+          "type": "string"
+        },
+        "newPassword": {
           "type": "string"
         }
       }

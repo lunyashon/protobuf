@@ -25,6 +25,7 @@ const (
 type PasswordRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OldPassword   string                 `protobuf:"bytes,1,opt,name=oldPassword,proto3" json:"oldPassword,omitempty"`
+	NewPassword   string                 `protobuf:"bytes,2,opt,name=newPassword,proto3" json:"newPassword,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -62,6 +63,13 @@ func (*PasswordRequest) Descriptor() ([]byte, []int) {
 func (x *PasswordRequest) GetOldPassword() string {
 	if x != nil {
 		return x.OldPassword
+	}
+	return ""
+}
+
+func (x *PasswordRequest) GetNewPassword() string {
+	if x != nil {
+		return x.NewPassword
 	}
 	return ""
 }
@@ -148,7 +156,7 @@ func (*EmailRequest) Descriptor() ([]byte, []int) {
 
 type EmailResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Succes        bool                   `protobuf:"varint,1,opt,name=succes,proto3" json:"succes,omitempty"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -183,9 +191,9 @@ func (*EmailResponse) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *EmailResponse) GetSucces() bool {
+func (x *EmailResponse) GetSuccess() bool {
 	if x != nil {
-		return x.Succes
+		return x.Success
 	}
 	return false
 }
@@ -1054,14 +1062,15 @@ var File_sso_v1_sso_proto protoreflect.FileDescriptor
 
 const file_sso_v1_sso_proto_rawDesc = "" +
 	"\n" +
-	"\x10sso/v1/sso.proto\x12\x06sso.v1\x1a\x1cgoogle/api/annotations.proto\"3\n" +
+	"\x10sso/v1/sso.proto\x12\x06sso.v1\x1a\x1cgoogle/api/annotations.proto\"U\n" +
 	"\x0fPasswordRequest\x12 \n" +
-	"\voldPassword\x18\x01 \x01(\tR\voldPassword\",\n" +
+	"\voldPassword\x18\x01 \x01(\tR\voldPassword\x12 \n" +
+	"\vnewPassword\x18\x02 \x01(\tR\vnewPassword\",\n" +
 	"\x10PasswordResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x0e\n" +
-	"\fEmailRequest\"'\n" +
-	"\rEmailResponse\x12\x16\n" +
-	"\x06succes\x18\x01 \x01(\bR\x06succes\"\x8d\x01\n" +
+	"\fEmailRequest\")\n" +
+	"\rEmailResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x8d\x01\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x14\n" +
