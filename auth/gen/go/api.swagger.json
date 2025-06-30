@@ -16,6 +16,38 @@
     "application/json"
   ],
   "paths": {
+    "/v1/user/email.confirm": {
+      "post": {
+        "operationId": "Auth_ConfirmEmail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1EmailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1EmailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
     "/v1/user/login": {
       "post": {
         "operationId": "Auth_Login",
@@ -72,6 +104,38 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/v1LogoutRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1/user/password.change": {
+      "post": {
+        "operationId": "Auth_ChangePassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1PasswordRequest"
             }
           }
         ],
@@ -222,6 +286,17 @@
         }
       }
     },
+    "v1EmailRequest": {
+      "type": "object"
+    },
+    "v1EmailResponse": {
+      "type": "object",
+      "properties": {
+        "succes": {
+          "type": "boolean"
+        }
+      }
+    },
     "v1JWK": {
       "type": "object",
       "properties": {
@@ -279,9 +354,6 @@
     "v1LogoutRequest": {
       "type": "object",
       "properties": {
-        "accessToken": {
-          "type": "string"
-        },
         "refreshToken": {
           "type": "string"
         }
@@ -295,6 +367,22 @@
         },
         "message": {
           "type": "string"
+        }
+      }
+    },
+    "v1PasswordRequest": {
+      "type": "object",
+      "properties": {
+        "oldPassword": {
+          "type": "string"
+        }
+      }
+    },
+    "v1PasswordResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
         }
       }
     },
