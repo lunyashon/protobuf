@@ -22,6 +22,94 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type ForgotRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ForgotRequest) Reset() {
+	*x = ForgotRequest{}
+	mi := &file_sso_v1_sso_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ForgotRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ForgotRequest) ProtoMessage() {}
+
+func (x *ForgotRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_v1_sso_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ForgotRequest.ProtoReflect.Descriptor instead.
+func (*ForgotRequest) Descriptor() ([]byte, []int) {
+	return file_sso_v1_sso_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *ForgotRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+type ForgotResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ForgotResponse) Reset() {
+	*x = ForgotResponse{}
+	mi := &file_sso_v1_sso_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ForgotResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ForgotResponse) ProtoMessage() {}
+
+func (x *ForgotResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_v1_sso_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ForgotResponse.ProtoReflect.Descriptor instead.
+func (*ForgotResponse) Descriptor() ([]byte, []int) {
+	return file_sso_v1_sso_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *ForgotResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
 type PasswordRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OldPassword   string                 `protobuf:"bytes,1,opt,name=oldPassword,proto3" json:"oldPassword,omitempty"`
@@ -32,7 +120,7 @@ type PasswordRequest struct {
 
 func (x *PasswordRequest) Reset() {
 	*x = PasswordRequest{}
-	mi := &file_sso_v1_sso_proto_msgTypes[0]
+	mi := &file_sso_v1_sso_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -44,7 +132,7 @@ func (x *PasswordRequest) String() string {
 func (*PasswordRequest) ProtoMessage() {}
 
 func (x *PasswordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sso_v1_sso_proto_msgTypes[0]
+	mi := &file_sso_v1_sso_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +145,7 @@ func (x *PasswordRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PasswordRequest.ProtoReflect.Descriptor instead.
 func (*PasswordRequest) Descriptor() ([]byte, []int) {
-	return file_sso_v1_sso_proto_rawDescGZIP(), []int{0}
+	return file_sso_v1_sso_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *PasswordRequest) GetOldPassword() string {
@@ -83,7 +171,7 @@ type PasswordResponse struct {
 
 func (x *PasswordResponse) Reset() {
 	*x = PasswordResponse{}
-	mi := &file_sso_v1_sso_proto_msgTypes[1]
+	mi := &file_sso_v1_sso_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -95,7 +183,7 @@ func (x *PasswordResponse) String() string {
 func (*PasswordResponse) ProtoMessage() {}
 
 func (x *PasswordResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sso_v1_sso_proto_msgTypes[1]
+	mi := &file_sso_v1_sso_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -108,90 +196,10 @@ func (x *PasswordResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PasswordResponse.ProtoReflect.Descriptor instead.
 func (*PasswordResponse) Descriptor() ([]byte, []int) {
-	return file_sso_v1_sso_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *PasswordResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-type EmailRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailRequest) Reset() {
-	*x = EmailRequest{}
-	mi := &file_sso_v1_sso_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailRequest) ProtoMessage() {}
-
-func (x *EmailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sso_v1_sso_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailRequest.ProtoReflect.Descriptor instead.
-func (*EmailRequest) Descriptor() ([]byte, []int) {
-	return file_sso_v1_sso_proto_rawDescGZIP(), []int{2}
-}
-
-type EmailResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailResponse) Reset() {
-	*x = EmailResponse{}
-	mi := &file_sso_v1_sso_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailResponse) ProtoMessage() {}
-
-func (x *EmailResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sso_v1_sso_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailResponse.ProtoReflect.Descriptor instead.
-func (*EmailResponse) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *EmailResponse) GetSuccess() bool {
+func (x *PasswordResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
@@ -1062,14 +1070,15 @@ var File_sso_v1_sso_proto protoreflect.FileDescriptor
 
 const file_sso_v1_sso_proto_rawDesc = "" +
 	"\n" +
-	"\x10sso/v1/sso.proto\x12\x06sso.v1\x1a\x1cgoogle/api/annotations.proto\"U\n" +
+	"\x10sso/v1/sso.proto\x12\x06sso.v1\x1a\x1cgoogle/api/annotations.proto\"%\n" +
+	"\rForgotRequest\x12\x14\n" +
+	"\x05email\x18\x01 \x01(\tR\x05email\"*\n" +
+	"\x0eForgotResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"U\n" +
 	"\x0fPasswordRequest\x12 \n" +
 	"\voldPassword\x18\x01 \x01(\tR\voldPassword\x12 \n" +
 	"\vnewPassword\x18\x02 \x01(\tR\vnewPassword\",\n" +
 	"\x10PasswordResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x0e\n" +
-	"\fEmailRequest\")\n" +
-	"\rEmailResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x8d\x01\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
@@ -1118,15 +1127,15 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x12AccessTokenRequest\x12\"\n" +
 	"\frefreshToken\x18\x01 \x01(\tR\frefreshToken\"7\n" +
 	"\x13AccessTokenResponse\x12 \n" +
-	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xd6\x06\n" +
+	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xda\x06\n" +
 	"\x04Auth\x12[\n" +
 	"\bRegister\x12\x17.sso.v1.RegisterRequest\x1a\x18.sso.v1.RegisterResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/user/register\x12O\n" +
 	"\x05Login\x12\x14.sso.v1.LoginRequest\x1a\x15.sso.v1.LoginResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/login\x12U\n" +
 	"\vCreateToken\x12\x14.sso.v1.TokenRequest\x1a\x15.sso.v1.TokenResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/token\x12S\n" +
 	"\x06Logout\x12\x15.sso.v1.LogoutRequest\x1a\x16.sso.v1.LogoutResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/user/logout\x12u\n" +
 	"\x11UpdateAccessToken\x12\x1a.sso.v1.AccessTokenRequest\x1a\x1b.sso.v1.AccessTokenResponse\"'\x82\xd3\xe4\x93\x02!:\x01*\x1a\x1c/v1/user/update.access.token\x12h\n" +
-	"\x0eChangePassword\x12\x17.sso.v1.PasswordRequest\x1a\x18.sso.v1.PasswordResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v1/user/password.change\x12^\n" +
-	"\fConfirmEmail\x12\x14.sso.v1.EmailRequest\x1a\x15.sso.v1.EmailResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/v1/user/email.confirm\x12B\n" +
+	"\x0eChangePassword\x12\x17.sso.v1.PasswordRequest\x1a\x18.sso.v1.PasswordResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v1/user/password.change\x12b\n" +
+	"\x0eForgotPassword\x12\x15.sso.v1.ForgotRequest\x1a\x16.sso.v1.ForgotResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/v1/user/email.confirm\x12B\n" +
 	"\rValidateToken\x12\x17.sso.v1.ValidateRequest\x1a\x18.sso.v1.ValidateResponse\x12?\n" +
 	"\fRefreshToken\x12\x16.sso.v1.RefreshRequest\x1a\x17.sso.v1.RefreshResponse\x12.\n" +
 	"\aGetJWKS\x12\r.sso.v1.Empty\x1a\x14.sso.v1.JWKSResponseB\x0eZ\fsso/v1;ssov1b\x06proto3"
@@ -1145,10 +1154,10 @@ func file_sso_v1_sso_proto_rawDescGZIP() []byte {
 
 var file_sso_v1_sso_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
 var file_sso_v1_sso_proto_goTypes = []any{
-	(*PasswordRequest)(nil),     // 0: sso.v1.PasswordRequest
-	(*PasswordResponse)(nil),    // 1: sso.v1.PasswordResponse
-	(*EmailRequest)(nil),        // 2: sso.v1.EmailRequest
-	(*EmailResponse)(nil),       // 3: sso.v1.EmailResponse
+	(*ForgotRequest)(nil),       // 0: sso.v1.ForgotRequest
+	(*ForgotResponse)(nil),      // 1: sso.v1.ForgotResponse
+	(*PasswordRequest)(nil),     // 2: sso.v1.PasswordRequest
+	(*PasswordResponse)(nil),    // 3: sso.v1.PasswordResponse
 	(*RegisterRequest)(nil),     // 4: sso.v1.RegisterRequest
 	(*RegisterResponse)(nil),    // 5: sso.v1.RegisterResponse
 	(*LoginRequest)(nil),        // 6: sso.v1.LoginRequest
@@ -1174,8 +1183,8 @@ var file_sso_v1_sso_proto_depIdxs = []int32{
 	8,  // 3: sso.v1.Auth.CreateToken:input_type -> sso.v1.TokenRequest
 	10, // 4: sso.v1.Auth.Logout:input_type -> sso.v1.LogoutRequest
 	19, // 5: sso.v1.Auth.UpdateAccessToken:input_type -> sso.v1.AccessTokenRequest
-	0,  // 6: sso.v1.Auth.ChangePassword:input_type -> sso.v1.PasswordRequest
-	2,  // 7: sso.v1.Auth.ConfirmEmail:input_type -> sso.v1.EmailRequest
+	2,  // 6: sso.v1.Auth.ChangePassword:input_type -> sso.v1.PasswordRequest
+	0,  // 7: sso.v1.Auth.ForgotPassword:input_type -> sso.v1.ForgotRequest
 	15, // 8: sso.v1.Auth.ValidateToken:input_type -> sso.v1.ValidateRequest
 	17, // 9: sso.v1.Auth.RefreshToken:input_type -> sso.v1.RefreshRequest
 	12, // 10: sso.v1.Auth.GetJWKS:input_type -> sso.v1.Empty
@@ -1184,8 +1193,8 @@ var file_sso_v1_sso_proto_depIdxs = []int32{
 	9,  // 13: sso.v1.Auth.CreateToken:output_type -> sso.v1.TokenResponse
 	11, // 14: sso.v1.Auth.Logout:output_type -> sso.v1.LogoutResponse
 	20, // 15: sso.v1.Auth.UpdateAccessToken:output_type -> sso.v1.AccessTokenResponse
-	1,  // 16: sso.v1.Auth.ChangePassword:output_type -> sso.v1.PasswordResponse
-	3,  // 17: sso.v1.Auth.ConfirmEmail:output_type -> sso.v1.EmailResponse
+	3,  // 16: sso.v1.Auth.ChangePassword:output_type -> sso.v1.PasswordResponse
+	1,  // 17: sso.v1.Auth.ForgotPassword:output_type -> sso.v1.ForgotResponse
 	16, // 18: sso.v1.Auth.ValidateToken:output_type -> sso.v1.ValidateResponse
 	18, // 19: sso.v1.Auth.RefreshToken:output_type -> sso.v1.RefreshResponse
 	13, // 20: sso.v1.Auth.GetJWKS:output_type -> sso.v1.JWKSResponse

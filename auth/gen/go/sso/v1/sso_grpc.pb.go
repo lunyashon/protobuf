@@ -25,7 +25,7 @@ const (
 	Auth_Logout_FullMethodName            = "/sso.v1.Auth/Logout"
 	Auth_UpdateAccessToken_FullMethodName = "/sso.v1.Auth/UpdateAccessToken"
 	Auth_ChangePassword_FullMethodName    = "/sso.v1.Auth/ChangePassword"
-	Auth_ConfirmEmail_FullMethodName      = "/sso.v1.Auth/ConfirmEmail"
+	Auth_ForgotPassword_FullMethodName    = "/sso.v1.Auth/ForgotPassword"
 	Auth_ValidateToken_FullMethodName     = "/sso.v1.Auth/ValidateToken"
 	Auth_RefreshToken_FullMethodName      = "/sso.v1.Auth/RefreshToken"
 	Auth_GetJWKS_FullMethodName           = "/sso.v1.Auth/GetJWKS"
@@ -41,7 +41,7 @@ type AuthClient interface {
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
 	UpdateAccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenResponse, error)
 	ChangePassword(ctx context.Context, in *PasswordRequest, opts ...grpc.CallOption) (*PasswordResponse, error)
-	ConfirmEmail(ctx context.Context, in *EmailRequest, opts ...grpc.CallOption) (*EmailResponse, error)
+	ForgotPassword(ctx context.Context, in *ForgotRequest, opts ...grpc.CallOption) (*ForgotResponse, error)
 	ValidateToken(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
 	RefreshToken(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error)
 	GetJWKS(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*JWKSResponse, error)
@@ -115,10 +115,10 @@ func (c *authClient) ChangePassword(ctx context.Context, in *PasswordRequest, op
 	return out, nil
 }
 
-func (c *authClient) ConfirmEmail(ctx context.Context, in *EmailRequest, opts ...grpc.CallOption) (*EmailResponse, error) {
+func (c *authClient) ForgotPassword(ctx context.Context, in *ForgotRequest, opts ...grpc.CallOption) (*ForgotResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(EmailResponse)
-	err := c.cc.Invoke(ctx, Auth_ConfirmEmail_FullMethodName, in, out, cOpts...)
+	out := new(ForgotResponse)
+	err := c.cc.Invoke(ctx, Auth_ForgotPassword_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -165,7 +165,7 @@ type AuthServer interface {
 	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
 	UpdateAccessToken(context.Context, *AccessTokenRequest) (*AccessTokenResponse, error)
 	ChangePassword(context.Context, *PasswordRequest) (*PasswordResponse, error)
-	ConfirmEmail(context.Context, *EmailRequest) (*EmailResponse, error)
+	ForgotPassword(context.Context, *ForgotRequest) (*ForgotResponse, error)
 	ValidateToken(context.Context, *ValidateRequest) (*ValidateResponse, error)
 	RefreshToken(context.Context, *RefreshRequest) (*RefreshResponse, error)
 	GetJWKS(context.Context, *Empty) (*JWKSResponse, error)
@@ -197,8 +197,8 @@ func (UnimplementedAuthServer) UpdateAccessToken(context.Context, *AccessTokenRe
 func (UnimplementedAuthServer) ChangePassword(context.Context, *PasswordRequest) (*PasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePassword not implemented")
 }
-func (UnimplementedAuthServer) ConfirmEmail(context.Context, *EmailRequest) (*EmailResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ConfirmEmail not implemented")
+func (UnimplementedAuthServer) ForgotPassword(context.Context, *ForgotRequest) (*ForgotResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ForgotPassword not implemented")
 }
 func (UnimplementedAuthServer) ValidateToken(context.Context, *ValidateRequest) (*ValidateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateToken not implemented")
@@ -338,20 +338,20 @@ func _Auth_ChangePassword_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Auth_ConfirmEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmailRequest)
+func _Auth_ForgotPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ForgotRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServer).ConfirmEmail(ctx, in)
+		return srv.(AuthServer).ForgotPassword(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Auth_ConfirmEmail_FullMethodName,
+		FullMethod: Auth_ForgotPassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).ConfirmEmail(ctx, req.(*EmailRequest))
+		return srv.(AuthServer).ForgotPassword(ctx, req.(*ForgotRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -442,8 +442,8 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Auth_ChangePassword_Handler,
 		},
 		{
-			MethodName: "ConfirmEmail",
-			Handler:    _Auth_ConfirmEmail_Handler,
+			MethodName: "ForgotPassword",
+			Handler:    _Auth_ForgotPassword_Handler,
 		},
 		{
 			MethodName: "ValidateToken",

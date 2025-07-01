@@ -18,12 +18,12 @@
   "paths": {
     "/v1/user/email.confirm": {
       "post": {
-        "operationId": "Auth_ConfirmEmail",
+        "operationId": "Auth_ForgotPassword",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1EmailResponse"
+              "$ref": "#/definitions/v1ForgotResponse"
             }
           },
           "default": {
@@ -39,7 +39,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/v1EmailRequest"
+              "$ref": "#/definitions/v1ForgotRequest"
             }
           }
         ],
@@ -286,10 +286,15 @@
         }
       }
     },
-    "v1EmailRequest": {
-      "type": "object"
+    "v1ForgotRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
     },
-    "v1EmailResponse": {
+    "v1ForgotResponse": {
       "type": "object",
       "properties": {
         "success": {
