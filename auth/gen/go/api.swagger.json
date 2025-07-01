@@ -18,12 +18,12 @@
   "paths": {
     "/v1/user/email.confirm": {
       "post": {
-        "operationId": "Auth_ForgotPassword",
+        "operationId": "Auth_ConfirmEmail",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/v1ForgotResponse"
+              "$ref": "#/definitions/v1EmailResponse"
             }
           },
           "default": {
@@ -35,12 +35,10 @@
         },
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1ForgotRequest"
-            }
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -136,6 +134,38 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/v1PasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1/user/password.forgot": {
+      "post": {
+        "operationId": "Auth_ForgotPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ForgotResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1ForgotRequest"
             }
           }
         ],
@@ -282,6 +312,14 @@
       "type": "object",
       "properties": {
         "accessToken": {
+          "type": "string"
+        }
+      }
+    },
+    "v1EmailResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
           "type": "string"
         }
       }
