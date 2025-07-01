@@ -43,13 +43,26 @@ service Auth {
     }
     rpc ForgotPassword (ForgotRequest) returns (ForgotResponse) {
         option (google.api.http) = {
-            post: "/v1/user/email.confirm"
+            post: "/v1/user/password.forgot"
             body: "*"
+        };
+    }
+    rpc ConfirmEmail (EmailRequest) returns (EmailResponse) {
+        option (google.api.http) = {
+            post: "/v1/user/email.confirm"
         };
     }
     rpc ValidateToken (ValidateRequest) returns (ValidateResponse);
     rpc RefreshToken (RefreshRequest) returns (RefreshResponse);
     rpc GetJWKS (Empty) returns (JWKSResponse);
+}
+
+message EmailRequest {
+    string email = 1;
+}
+
+message EmailResponse {
+    string success = 1;
 }
 
 message ForgotRequest {
