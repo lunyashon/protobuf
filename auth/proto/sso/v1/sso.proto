@@ -41,7 +41,7 @@ service Auth {
             body: "*"
         };
     }
-    rpc ConfirmEmail (EmailRequest) returns (EmailResponse) {
+    rpc ForgotPassword (ForgotRequest) returns (ForgotResponse) {
         option (google.api.http) = {
             post: "/v1/user/email.confirm"
             body: "*"
@@ -52,18 +52,20 @@ service Auth {
     rpc GetJWKS (Empty) returns (JWKSResponse);
 }
 
+message ForgotRequest {
+    string email = 1; 
+}
+
+message ForgotResponse {
+    bool success = 1;
+}
+
 message PasswordRequest {
     string oldPassword = 1;
     string newPassword = 2;
 }
 
 message PasswordResponse {
-    bool success = 1;
-}
-
-message EmailRequest {}
-
-message EmailResponse {
     bool success = 1;
 }
 
