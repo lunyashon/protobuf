@@ -62,7 +62,7 @@ message EmailRequest {
 }
 
 message EmailResponse {
-    string success = 1;
+    bool success = 1;
 }
 
 message ForgotRequest {
