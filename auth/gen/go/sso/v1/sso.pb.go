@@ -68,7 +68,7 @@ func (x *EmailRequest) GetEmail() string {
 
 type EmailResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       string                 `protobuf:"bytes,1,opt,name=success,proto3" json:"success,omitempty"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -103,11 +103,11 @@ func (*EmailResponse) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *EmailResponse) GetSuccess() string {
+func (x *EmailResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
-	return ""
+	return false
 }
 
 type ForgotRequest struct {
@@ -1162,7 +1162,7 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\fEmailRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\")\n" +
 	"\rEmailResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\tR\asuccess\"%\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"%\n" +
 	"\rForgotRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\"*\n" +
 	"\x0eForgotResponse\x12\x18\n" +
