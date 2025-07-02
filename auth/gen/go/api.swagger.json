@@ -174,38 +174,6 @@
         ]
       }
     },
-    "/v1/user/register": {
-      "post": {
-        "operationId": "Auth_Register",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1RegisterResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1RegisterRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Auth"
-        ]
-      }
-    },
     "/v1/user/token": {
       "post": {
         "operationId": "Auth_CreateToken",
@@ -269,9 +237,67 @@
           "Auth"
         ]
       }
+    },
+    "/v1/user/{token}/register": {
+      "post": {
+        "operationId": "Auth_Register",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1RegisterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthRegisterBody"
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
     }
   },
   "definitions": {
+    "AuthRegisterBody": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "login": {
+          "type": "string"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -444,29 +470,6 @@
         "expiresIn": {
           "type": "string",
           "format": "int64"
-        }
-      }
-    },
-    "v1RegisterRequest": {
-      "type": "object",
-      "properties": {
-        "email": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "login": {
-          "type": "string"
-        },
-        "apiKey": {
-          "type": "string"
-        },
-        "services": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         }
       }
     },

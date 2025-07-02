@@ -296,10 +296,10 @@ func (x *PasswordResponse) GetSuccess() bool {
 
 type RegisterRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	Login         string                 `protobuf:"bytes,3,opt,name=login,proto3" json:"login,omitempty"`
-	ApiKey        string                 `protobuf:"bytes,4,opt,name=apiKey,proto3" json:"apiKey,omitempty"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
+	Password      string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
+	Login         string                 `protobuf:"bytes,4,opt,name=login,proto3" json:"login,omitempty"`
 	Services      []string               `protobuf:"bytes,5,rep,name=services,proto3" json:"services,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -335,6 +335,13 @@ func (*RegisterRequest) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{6}
 }
 
+func (x *RegisterRequest) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
 func (x *RegisterRequest) GetEmail() string {
 	if x != nil {
 		return x.Email
@@ -352,13 +359,6 @@ func (x *RegisterRequest) GetPassword() string {
 func (x *RegisterRequest) GetLogin() string {
 	if x != nil {
 		return x.Login
-	}
-	return ""
-}
-
-func (x *RegisterRequest) GetApiKey() string {
-	if x != nil {
-		return x.ApiKey
 	}
 	return ""
 }
@@ -1171,12 +1171,12 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\voldPassword\x18\x01 \x01(\tR\voldPassword\x12 \n" +
 	"\vnewPassword\x18\x02 \x01(\tR\vnewPassword\",\n" +
 	"\x10PasswordResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x8d\x01\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x8b\x01\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x14\n" +
-	"\x05login\x18\x03 \x01(\tR\x05login\x12\x16\n" +
-	"\x06apiKey\x18\x04 \x01(\tR\x06apiKey\x12\x1a\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\x12\x14\n" +
+	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
+	"\bpassword\x18\x03 \x01(\tR\bpassword\x12\x14\n" +
+	"\x05login\x18\x04 \x01(\tR\x05login\x12\x1a\n" +
 	"\bservices\x18\x05 \x03(\tR\bservices\"+\n" +
 	"\x10RegisterResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\"@\n" +
@@ -1219,9 +1219,9 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x12AccessTokenRequest\x12\"\n" +
 	"\frefreshToken\x18\x01 \x01(\tR\frefreshToken\"7\n" +
 	"\x13AccessTokenResponse\x12 \n" +
-	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xb9\a\n" +
-	"\x04Auth\x12[\n" +
-	"\bRegister\x12\x17.sso.v1.RegisterRequest\x1a\x18.sso.v1.RegisterResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11/v1/user/register\x12O\n" +
+	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xc1\a\n" +
+	"\x04Auth\x12c\n" +
+	"\bRegister\x12\x17.sso.v1.RegisterRequest\x1a\x18.sso.v1.RegisterResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1/user/{token}/register\x12O\n" +
 	"\x05Login\x12\x14.sso.v1.LoginRequest\x1a\x15.sso.v1.LoginResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/login\x12U\n" +
 	"\vCreateToken\x12\x14.sso.v1.TokenRequest\x1a\x15.sso.v1.TokenResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/token\x12S\n" +
 	"\x06Logout\x12\x15.sso.v1.LogoutRequest\x1a\x16.sso.v1.LogoutResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/user/logout\x12u\n" +
