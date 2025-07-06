@@ -52,9 +52,36 @@ service Auth {
             post: "/v1/user/email.confirm"
         };
     }
+    rpc CheckForgotToken (CheckForgotRequest) returns (CheckForgotResponse) {
+        option (google.api.http) = {
+            get: "/v1/user/{token}/password.check.token"
+        };
+    }
+    rpc ResetPassword (ResetRequest) returns (ResetResponse) {
+        option (google.api.http) = {
+            put: "/v1/user/{token}/password.reset"
+        };
+    }
     rpc ValidateToken (ValidateRequest) returns (ValidateResponse);
     rpc RefreshToken (RefreshRequest) returns (RefreshResponse);
     rpc GetJWKS (Empty) returns (JWKSResponse);
+}
+
+message CheckForgotRequest {
+    string token = 1;
+}
+
+message CheckForgotResponse {
+    bool success = 1;
+}
+
+message ResetRequest {
+    string token = 1;
+    string password = 2;
+}
+
+message ResetResponse {
+    bool success = 1;
 }
 
 message EmailRequest {
