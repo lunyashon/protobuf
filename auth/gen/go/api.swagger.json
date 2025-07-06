@@ -238,6 +238,72 @@
         ]
       }
     },
+    "/v1/user/{token}/password.check.token": {
+      "get": {
+        "operationId": "Auth_CheckForgotToken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CheckForgotResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1/user/{token}/password.reset": {
+      "put": {
+        "operationId": "Auth_ResetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ResetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
     "/v1/user/{token}/register": {
       "post": {
         "operationId": "Auth_Register",
@@ -339,6 +405,14 @@
       "properties": {
         "accessToken": {
           "type": "string"
+        }
+      }
+    },
+    "v1CheckForgotResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
         }
       }
     },
@@ -479,6 +553,14 @@
         "userId": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "v1ResetResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
         }
       }
     },

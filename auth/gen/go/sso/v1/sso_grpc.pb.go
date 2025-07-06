@@ -27,6 +27,8 @@ const (
 	Auth_ChangePassword_FullMethodName    = "/sso.v1.Auth/ChangePassword"
 	Auth_ForgotPassword_FullMethodName    = "/sso.v1.Auth/ForgotPassword"
 	Auth_ConfirmEmail_FullMethodName      = "/sso.v1.Auth/ConfirmEmail"
+	Auth_CheckForgotToken_FullMethodName  = "/sso.v1.Auth/CheckForgotToken"
+	Auth_ResetPassword_FullMethodName     = "/sso.v1.Auth/ResetPassword"
 	Auth_ValidateToken_FullMethodName     = "/sso.v1.Auth/ValidateToken"
 	Auth_RefreshToken_FullMethodName      = "/sso.v1.Auth/RefreshToken"
 	Auth_GetJWKS_FullMethodName           = "/sso.v1.Auth/GetJWKS"
@@ -44,6 +46,8 @@ type AuthClient interface {
 	ChangePassword(ctx context.Context, in *PasswordRequest, opts ...grpc.CallOption) (*PasswordResponse, error)
 	ForgotPassword(ctx context.Context, in *ForgotRequest, opts ...grpc.CallOption) (*ForgotResponse, error)
 	ConfirmEmail(ctx context.Context, in *EmailRequest, opts ...grpc.CallOption) (*EmailResponse, error)
+	CheckForgotToken(ctx context.Context, in *CheckForgotRequest, opts ...grpc.CallOption) (*CheckForgotResponse, error)
+	ResetPassword(ctx context.Context, in *ResetRequest, opts ...grpc.CallOption) (*ResetResponse, error)
 	ValidateToken(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
 	RefreshToken(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error)
 	GetJWKS(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*JWKSResponse, error)
@@ -137,6 +141,26 @@ func (c *authClient) ConfirmEmail(ctx context.Context, in *EmailRequest, opts ..
 	return out, nil
 }
 
+func (c *authClient) CheckForgotToken(ctx context.Context, in *CheckForgotRequest, opts ...grpc.CallOption) (*CheckForgotResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CheckForgotResponse)
+	err := c.cc.Invoke(ctx, Auth_CheckForgotToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) ResetPassword(ctx context.Context, in *ResetRequest, opts ...grpc.CallOption) (*ResetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ResetResponse)
+	err := c.cc.Invoke(ctx, Auth_ResetPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authClient) ValidateToken(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ValidateResponse)
@@ -179,6 +203,8 @@ type AuthServer interface {
 	ChangePassword(context.Context, *PasswordRequest) (*PasswordResponse, error)
 	ForgotPassword(context.Context, *ForgotRequest) (*ForgotResponse, error)
 	ConfirmEmail(context.Context, *EmailRequest) (*EmailResponse, error)
+	CheckForgotToken(context.Context, *CheckForgotRequest) (*CheckForgotResponse, error)
+	ResetPassword(context.Context, *ResetRequest) (*ResetResponse, error)
 	ValidateToken(context.Context, *ValidateRequest) (*ValidateResponse, error)
 	RefreshToken(context.Context, *RefreshRequest) (*RefreshResponse, error)
 	GetJWKS(context.Context, *Empty) (*JWKSResponse, error)
@@ -215,6 +241,12 @@ func (UnimplementedAuthServer) ForgotPassword(context.Context, *ForgotRequest) (
 }
 func (UnimplementedAuthServer) ConfirmEmail(context.Context, *EmailRequest) (*EmailResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfirmEmail not implemented")
+}
+func (UnimplementedAuthServer) CheckForgotToken(context.Context, *CheckForgotRequest) (*CheckForgotResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckForgotToken not implemented")
+}
+func (UnimplementedAuthServer) ResetPassword(context.Context, *ResetRequest) (*ResetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
 }
 func (UnimplementedAuthServer) ValidateToken(context.Context, *ValidateRequest) (*ValidateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateToken not implemented")
@@ -390,6 +422,42 @@ func _Auth_ConfirmEmail_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_CheckForgotToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckForgotRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).CheckForgotToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_CheckForgotToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).CheckForgotToken(ctx, req.(*CheckForgotRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ResetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).ResetPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_ResetPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).ResetPassword(ctx, req.(*ResetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Auth_ValidateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ValidateRequest)
 	if err := dec(in); err != nil {
@@ -482,6 +550,14 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ConfirmEmail",
 			Handler:    _Auth_ConfirmEmail_Handler,
+		},
+		{
+			MethodName: "CheckForgotToken",
+			Handler:    _Auth_CheckForgotToken_Handler,
+		},
+		{
+			MethodName: "ResetPassword",
+			Handler:    _Auth_ResetPassword_Handler,
 		},
 		{
 			MethodName: "ValidateToken",
