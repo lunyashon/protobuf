@@ -238,7 +238,7 @@
         ]
       }
     },
-    "/v1/user/{token}/password.check.token": {
+    "/v1/user/{token}/password.forgot.check.token": {
       "get": {
         "operationId": "Auth_CheckForgotToken",
         "responses": {
