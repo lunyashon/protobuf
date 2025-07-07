@@ -54,7 +54,7 @@ service Auth {
     }
     rpc CheckForgotToken (CheckForgotRequest) returns (CheckForgotResponse) {
         option (google.api.http) = {
-            get: "/v1/user/{token}/password.check.token"
+            get: "/v1/user/{token}/password.forgot.check.token"
         };
     }
     rpc ResetPassword (ResetRequest) returns (ResetResponse) {

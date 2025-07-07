@@ -1412,7 +1412,7 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x12AccessTokenRequest\x12\"\n" +
 	"\frefreshToken\x18\x01 \x01(\tR\frefreshToken\"7\n" +
 	"\x13AccessTokenResponse\x12 \n" +
-	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xa4\t\n" +
+	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xac\t\n" +
 	"\x04Auth\x12c\n" +
 	"\bRegister\x12\x17.sso.v1.RegisterRequest\x1a\x18.sso.v1.RegisterResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1/user/{token}/register\x12O\n" +
 	"\x05Login\x12\x14.sso.v1.LoginRequest\x1a\x15.sso.v1.LoginResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/login\x12U\n" +
@@ -1421,8 +1421,8 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x11UpdateAccessToken\x12\x1a.sso.v1.AccessTokenRequest\x1a\x1b.sso.v1.AccessTokenResponse\"'\x82\xd3\xe4\x93\x02!:\x01*\x1a\x1c/v1/user/update.access.token\x12h\n" +
 	"\x0eChangePassword\x12\x17.sso.v1.PasswordRequest\x1a\x18.sso.v1.PasswordResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v1/user/password.change\x12d\n" +
 	"\x0eForgotPassword\x12\x15.sso.v1.ForgotRequest\x1a\x16.sso.v1.ForgotResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v1/user/password.forgot\x12[\n" +
-	"\fConfirmEmail\x12\x14.sso.v1.EmailRequest\x1a\x15.sso.v1.EmailResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x16/v1/user/email.confirm\x12z\n" +
-	"\x10CheckForgotToken\x12\x1a.sso.v1.CheckForgotRequest\x1a\x1b.sso.v1.CheckForgotResponse\"-\x82\xd3\xe4\x93\x02'\x12%/v1/user/{token}/password.check.token\x12e\n" +
+	"\fConfirmEmail\x12\x14.sso.v1.EmailRequest\x1a\x15.sso.v1.EmailResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\"\x16/v1/user/email.confirm\x12\x81\x01\n" +
+	"\x10CheckForgotToken\x12\x1a.sso.v1.CheckForgotRequest\x1a\x1b.sso.v1.CheckForgotResponse\"4\x82\xd3\xe4\x93\x02.\x12,/v1/user/{token}/password.forgot.check.token\x12e\n" +
 	"\rResetPassword\x12\x14.sso.v1.ResetRequest\x1a\x15.sso.v1.ResetResponse\"'\x82\xd3\xe4\x93\x02!\x1a\x1f/v1/user/{token}/password.reset\x12B\n" +
 	"\rValidateToken\x12\x17.sso.v1.ValidateRequest\x1a\x18.sso.v1.ValidateResponse\x12?\n" +
 	"\fRefreshToken\x12\x16.sso.v1.RefreshRequest\x1a\x17.sso.v1.RefreshResponse\x12.\n" +

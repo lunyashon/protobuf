@@ -514,7 +514,7 @@ func RegisterAuthHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/sso.v1.Auth/CheckForgotToken", runtime.WithHTTPPathPattern("/v1/user/{token}/password.check.token"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/sso.v1.Auth/CheckForgotToken", runtime.WithHTTPPathPattern("/v1/user/{token}/password.forgot.check.token"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -728,7 +728,7 @@ func RegisterAuthHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/sso.v1.Auth/CheckForgotToken", runtime.WithHTTPPathPattern("/v1/user/{token}/password.check.token"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/sso.v1.Auth/CheckForgotToken", runtime.WithHTTPPathPattern("/v1/user/{token}/password.forgot.check.token"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -770,7 +770,7 @@ var (
 	pattern_Auth_ChangePassword_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "user", "password.change"}, ""))
 	pattern_Auth_ForgotPassword_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "user", "password.forgot"}, ""))
 	pattern_Auth_ConfirmEmail_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "user", "email.confirm"}, ""))
-	pattern_Auth_CheckForgotToken_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "user", "token", "password.check.token"}, ""))
+	pattern_Auth_CheckForgotToken_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "user", "token", "password.forgot.check.token"}, ""))
 	pattern_Auth_ResetPassword_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "user", "token", "password.reset"}, ""))
 )
 
