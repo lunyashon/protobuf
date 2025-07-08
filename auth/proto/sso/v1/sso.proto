@@ -50,6 +50,7 @@ service Auth {
     rpc ConfirmEmail (EmailRequest) returns (EmailResponse) {
         option (google.api.http) = {
             post: "/v1/user/email.confirm"
+            body: "*"
         };
     }
     rpc CheckForgotToken (CheckForgotRequest) returns (CheckForgotResponse) {
@@ -60,6 +61,7 @@ service Auth {
     rpc ResetPassword (ResetRequest) returns (ResetResponse) {
         option (google.api.http) = {
             put: "/v1/user/{token}/password.reset"
+            body: "*"
         };
     }
     rpc ValidateToken (ValidateRequest) returns (ValidateResponse);
