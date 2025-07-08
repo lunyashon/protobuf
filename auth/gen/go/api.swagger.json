@@ -35,10 +35,12 @@
         },
         "parameters": [
           {
-            "name": "email",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1EmailRequest"
+            }
           }
         ],
         "tags": [
@@ -293,10 +295,12 @@
             "type": "string"
           },
           {
-            "name": "password",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AuthResetPasswordBody"
+            }
           }
         ],
         "tags": [
@@ -364,6 +368,14 @@
         }
       }
     },
+    "AuthResetPasswordBody": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -413,6 +425,14 @@
       "properties": {
         "success": {
           "type": "boolean"
+        }
+      }
+    },
+    "v1EmailRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
         }
       }
     },
