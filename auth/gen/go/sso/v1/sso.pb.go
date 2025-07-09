@@ -24,7 +24,7 @@ const (
 
 type CheckConfirmRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
+	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -59,9 +59,9 @@ func (*CheckConfirmRequest) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CheckConfirmRequest) GetToken() string {
+func (x *CheckConfirmRequest) GetCode() string {
 	if x != nil {
-		return x.Token
+		return x.Code
 	}
 	return ""
 }
@@ -1430,9 +1430,9 @@ var File_sso_v1_sso_proto protoreflect.FileDescriptor
 
 const file_sso_v1_sso_proto_rawDesc = "" +
 	"\n" +
-	"\x10sso/v1/sso.proto\x12\x06sso.v1\x1a\x1cgoogle/api/annotations.proto\"+\n" +
-	"\x13CheckConfirmRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"0\n" +
+	"\x10sso/v1/sso.proto\x12\x06sso.v1\x1a\x1cgoogle/api/annotations.proto\")\n" +
+	"\x13CheckConfirmRequest\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\"0\n" +
 	"\x14CheckConfirmResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"*\n" +
 	"\x12CheckForgotRequest\x12\x14\n" +
@@ -1504,7 +1504,7 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x12AccessTokenRequest\x12\"\n" +
 	"\frefreshToken\x18\x01 \x01(\tR\frefreshToken\"7\n" +
 	"\x13AccessTokenResponse\x12 \n" +
-	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xb7\n" +
+	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xb1\n" +
 	"\n" +
 	"\x04Auth\x12c\n" +
 	"\bRegister\x12\x17.sso.v1.RegisterRequest\x1a\x18.sso.v1.RegisterResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1/user/{token}/register\x12O\n" +
@@ -1514,8 +1514,8 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x11UpdateAccessToken\x12\x1a.sso.v1.AccessTokenRequest\x1a\x1b.sso.v1.AccessTokenResponse\"'\x82\xd3\xe4\x93\x02!:\x01*\x1a\x1c/v1/user/update.access.token\x12h\n" +
 	"\x0eChangePassword\x12\x17.sso.v1.PasswordRequest\x1a\x18.sso.v1.PasswordResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v1/user/password.change\x12d\n" +
 	"\x0eForgotPassword\x12\x15.sso.v1.ForgotRequest\x1a\x16.sso.v1.ForgotResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v1/user/password.forgot\x12^\n" +
-	"\fConfirmEmail\x12\x14.sso.v1.EmailRequest\x1a\x15.sso.v1.EmailResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/v1/user/email.confirm\x12\x82\x01\n" +
-	"\x11CheckConfirmToken\x12\x1b.sso.v1.CheckConfirmRequest\x1a\x1c.sso.v1.CheckConfirmResponse\"2\x82\xd3\xe4\x93\x02,\x12*/v1/user/{token}/email.confirm.check.token\x12\x81\x01\n" +
+	"\fConfirmEmail\x12\x14.sso.v1.EmailRequest\x1a\x15.sso.v1.EmailResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/v1/user/email.confirm\x12}\n" +
+	"\x11CheckConfirmToken\x12\x1b.sso.v1.CheckConfirmRequest\x1a\x1c.sso.v1.CheckConfirmResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/v1/user/email.confirm.check.token\x12\x81\x01\n" +
 	"\x10CheckForgotToken\x12\x1a.sso.v1.CheckForgotRequest\x1a\x1b.sso.v1.CheckForgotResponse\"4\x82\xd3\xe4\x93\x02.\x12,/v1/user/{token}/password.forgot.check.token\x12h\n" +
 	"\rResetPassword\x12\x14.sso.v1.ResetRequest\x1a\x15.sso.v1.ResetResponse\"*\x82\xd3\xe4\x93\x02$:\x01*\x1a\x1f/v1/user/{token}/password.reset\x12B\n" +
 	"\rValidateToken\x12\x17.sso.v1.ValidateRequest\x1a\x18.sso.v1.ValidateResponse\x12?\n" +
