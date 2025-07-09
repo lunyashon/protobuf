@@ -55,7 +55,8 @@ service Auth {
     }
     rpc CheckConfirmToken (CheckConfirmRequest) returns (CheckConfirmResponse) {
         option (google.api.http) = {
-            get: "/v1/user/{token}/email.confirm.check.token"
+            post: "/v1/user/email.confirm.check.token"
+            body: "*"
         };
     }
     rpc CheckForgotToken (CheckForgotRequest) returns (CheckForgotResponse) {
@@ -75,7 +76,7 @@ service Auth {
 }
 
 message CheckConfirmRequest {
-    string token = 1;
+    string code = 1;
 }
 
 message CheckConfirmResponse {

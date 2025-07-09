@@ -48,6 +48,38 @@
         ]
       }
     },
+    "/v1/user/email.confirm.check.token": {
+      "post": {
+        "operationId": "Auth_CheckConfirmToken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CheckConfirmResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1CheckConfirmRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
     "/v1/user/login": {
       "post": {
         "operationId": "Auth_Login",
@@ -240,36 +272,6 @@
         ]
       }
     },
-    "/v1/user/{token}/email.confirm.check.token": {
-      "get": {
-        "operationId": "Auth_CheckConfirmToken",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1CheckConfirmResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "token",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Auth"
-        ]
-      }
-    },
     "/v1/user/{token}/password.forgot.check.token": {
       "get": {
         "operationId": "Auth_CheckForgotToken",
@@ -446,6 +448,14 @@
       "type": "object",
       "properties": {
         "accessToken": {
+          "type": "string"
+        }
+      }
+    },
+    "v1CheckConfirmRequest": {
+      "type": "object",
+      "properties": {
+        "code": {
           "type": "string"
         }
       }
