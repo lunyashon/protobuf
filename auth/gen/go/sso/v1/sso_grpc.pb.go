@@ -30,6 +30,7 @@ const (
 	Auth_CheckConfirmToken_FullMethodName = "/sso.v1.Auth/CheckConfirmToken"
 	Auth_CheckForgotToken_FullMethodName  = "/sso.v1.Auth/CheckForgotToken"
 	Auth_ResetPassword_FullMethodName     = "/sso.v1.Auth/ResetPassword"
+	Auth_GetProfile_FullMethodName        = "/sso.v1.Auth/GetProfile"
 	Auth_ValidateToken_FullMethodName     = "/sso.v1.Auth/ValidateToken"
 	Auth_RefreshToken_FullMethodName      = "/sso.v1.Auth/RefreshToken"
 	Auth_GetJWKS_FullMethodName           = "/sso.v1.Auth/GetJWKS"
@@ -50,6 +51,7 @@ type AuthClient interface {
 	CheckConfirmToken(ctx context.Context, in *CheckConfirmRequest, opts ...grpc.CallOption) (*CheckConfirmResponse, error)
 	CheckForgotToken(ctx context.Context, in *CheckForgotRequest, opts ...grpc.CallOption) (*CheckForgotResponse, error)
 	ResetPassword(ctx context.Context, in *ResetRequest, opts ...grpc.CallOption) (*ResetResponse, error)
+	GetProfile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error)
 	ValidateToken(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
 	RefreshToken(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error)
 	GetJWKS(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*JWKSResponse, error)
@@ -173,6 +175,16 @@ func (c *authClient) ResetPassword(ctx context.Context, in *ResetRequest, opts .
 	return out, nil
 }
 
+func (c *authClient) GetProfile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ProfileResponse)
+	err := c.cc.Invoke(ctx, Auth_GetProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authClient) ValidateToken(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ValidateResponse)
@@ -218,6 +230,7 @@ type AuthServer interface {
 	CheckConfirmToken(context.Context, *CheckConfirmRequest) (*CheckConfirmResponse, error)
 	CheckForgotToken(context.Context, *CheckForgotRequest) (*CheckForgotResponse, error)
 	ResetPassword(context.Context, *ResetRequest) (*ResetResponse, error)
+	GetProfile(context.Context, *ProfileRequest) (*ProfileResponse, error)
 	ValidateToken(context.Context, *ValidateRequest) (*ValidateResponse, error)
 	RefreshToken(context.Context, *RefreshRequest) (*RefreshResponse, error)
 	GetJWKS(context.Context, *Empty) (*JWKSResponse, error)
@@ -263,6 +276,9 @@ func (UnimplementedAuthServer) CheckForgotToken(context.Context, *CheckForgotReq
 }
 func (UnimplementedAuthServer) ResetPassword(context.Context, *ResetRequest) (*ResetResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
+}
+func (UnimplementedAuthServer) GetProfile(context.Context, *ProfileRequest) (*ProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProfile not implemented")
 }
 func (UnimplementedAuthServer) ValidateToken(context.Context, *ValidateRequest) (*ValidateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateToken not implemented")
@@ -492,6 +508,24 @@ func _Auth_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_GetProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).GetProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_GetProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).GetProfile(ctx, req.(*ProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Auth_ValidateToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ValidateRequest)
 	if err := dec(in); err != nil {
@@ -596,6 +630,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ResetPassword",
 			Handler:    _Auth_ResetPassword_Handler,
+		},
+		{
+			MethodName: "GetProfile",
+			Handler:    _Auth_GetProfile_Handler,
 		},
 		{
 			MethodName: "ValidateToken",
