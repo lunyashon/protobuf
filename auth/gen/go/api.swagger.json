@@ -208,6 +208,28 @@
         ]
       }
     },
+    "/v1/user/profile": {
+      "get": {
+        "operationId": "Auth_GetProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
     "/v1/user/token": {
       "post": {
         "operationId": "Auth_CreateToken",
@@ -596,6 +618,28 @@
       "type": "object",
       "properties": {
         "success": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1ProfileResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "email": {
+          "type": "string"
+        },
+        "login": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "confirmed": {
           "type": "boolean"
         }
       }

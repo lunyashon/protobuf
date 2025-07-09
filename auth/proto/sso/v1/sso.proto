@@ -2,7 +2,8 @@ syntax = "proto3";
 package sso.v1;
 option go_package = "sso/v1;ssov1";
 
-import "google/api/annotations.proto";  
+import "google/api/annotations.proto"; 
+import "google/protobuf/timestamp.proto"; 
 
 service Auth {
     rpc Register (RegisterRequest) returns (RegisterResponse) {
@@ -70,9 +71,24 @@ service Auth {
             body: "*"
         };
     }
+    rpc GetProfile (ProfileRequest) returns (ProfileResponse) {
+        option (google.api.http) = {
+            get: "/v1/user/profile"
+        };
+    }
     rpc ValidateToken (ValidateRequest) returns (ValidateResponse);
     rpc RefreshToken (RefreshRequest) returns (RefreshResponse);
     rpc GetJWKS (Empty) returns (JWKSResponse);
+}
+
+message ProfileRequest {}
+
+message ProfileResponse {
+    int64 id = 1;
+    string email = 2;
+    string login = 3;
+    google.protobuf.Timestamp createdAt = 4;
+    bool confirmed = 5;
 }
 
 message CheckConfirmRequest {
