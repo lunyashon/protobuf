@@ -53,6 +53,11 @@ service Auth {
             body: "*"
         };
     }
+    rpc CheckConfirmToken (CheckConfirmRequest) returns (CheckConfirmResponse) {
+        option (google.api.http) = {
+            get: "/v1/user/{token}/email.confirm.check.token"
+        };
+    }
     rpc CheckForgotToken (CheckForgotRequest) returns (CheckForgotResponse) {
         option (google.api.http) = {
             get: "/v1/user/{token}/password.forgot.check.token"
@@ -67,6 +72,14 @@ service Auth {
     rpc ValidateToken (ValidateRequest) returns (ValidateResponse);
     rpc RefreshToken (RefreshRequest) returns (RefreshResponse);
     rpc GetJWKS (Empty) returns (JWKSResponse);
+}
+
+message CheckConfirmRequest {
+    string token = 1;
+}
+
+message CheckConfirmResponse {
+    bool success = 1;
 }
 
 message CheckForgotRequest {
