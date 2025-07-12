@@ -45,7 +45,7 @@ type AuthClient interface {
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	CreateToken(ctx context.Context, in *TokenRequest, opts ...grpc.CallOption) (*TokenResponse, error)
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
-	MassLogout(ctx context.Context, in *MassLogoutRequest, opts ...grpc.CallOption) (*MassLogoutRequest, error)
+	MassLogout(ctx context.Context, in *MassLogoutRequest, opts ...grpc.CallOption) (*MassLogoutResponse, error)
 	UpdateAccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenResponse, error)
 	ChangePassword(ctx context.Context, in *PasswordRequest, opts ...grpc.CallOption) (*PasswordResponse, error)
 	ForgotPassword(ctx context.Context, in *ForgotRequest, opts ...grpc.CallOption) (*ForgotResponse, error)
@@ -107,9 +107,9 @@ func (c *authClient) Logout(ctx context.Context, in *LogoutRequest, opts ...grpc
 	return out, nil
 }
 
-func (c *authClient) MassLogout(ctx context.Context, in *MassLogoutRequest, opts ...grpc.CallOption) (*MassLogoutRequest, error) {
+func (c *authClient) MassLogout(ctx context.Context, in *MassLogoutRequest, opts ...grpc.CallOption) (*MassLogoutResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MassLogoutRequest)
+	out := new(MassLogoutResponse)
 	err := c.cc.Invoke(ctx, Auth_MassLogout_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -235,7 +235,7 @@ type AuthServer interface {
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	CreateToken(context.Context, *TokenRequest) (*TokenResponse, error)
 	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
-	MassLogout(context.Context, *MassLogoutRequest) (*MassLogoutRequest, error)
+	MassLogout(context.Context, *MassLogoutRequest) (*MassLogoutResponse, error)
 	UpdateAccessToken(context.Context, *AccessTokenRequest) (*AccessTokenResponse, error)
 	ChangePassword(context.Context, *PasswordRequest) (*PasswordResponse, error)
 	ForgotPassword(context.Context, *ForgotRequest) (*ForgotResponse, error)
@@ -269,7 +269,7 @@ func (UnimplementedAuthServer) CreateToken(context.Context, *TokenRequest) (*Tok
 func (UnimplementedAuthServer) Logout(context.Context, *LogoutRequest) (*LogoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
 }
-func (UnimplementedAuthServer) MassLogout(context.Context, *MassLogoutRequest) (*MassLogoutRequest, error) {
+func (UnimplementedAuthServer) MassLogout(context.Context, *MassLogoutRequest) (*MassLogoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MassLogout not implemented")
 }
 func (UnimplementedAuthServer) UpdateAccessToken(context.Context, *AccessTokenRequest) (*AccessTokenResponse, error) {
