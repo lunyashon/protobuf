@@ -23,6 +23,7 @@ const (
 	Auth_Login_FullMethodName             = "/sso.v1.Auth/Login"
 	Auth_CreateToken_FullMethodName       = "/sso.v1.Auth/CreateToken"
 	Auth_Logout_FullMethodName            = "/sso.v1.Auth/Logout"
+	Auth_MassLogout_FullMethodName        = "/sso.v1.Auth/MassLogout"
 	Auth_UpdateAccessToken_FullMethodName = "/sso.v1.Auth/UpdateAccessToken"
 	Auth_ChangePassword_FullMethodName    = "/sso.v1.Auth/ChangePassword"
 	Auth_ForgotPassword_FullMethodName    = "/sso.v1.Auth/ForgotPassword"
@@ -44,6 +45,7 @@ type AuthClient interface {
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 	CreateToken(ctx context.Context, in *TokenRequest, opts ...grpc.CallOption) (*TokenResponse, error)
 	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*LogoutResponse, error)
+	MassLogout(ctx context.Context, in *MassLogoutRequest, opts ...grpc.CallOption) (*MassLogoutRequest, error)
 	UpdateAccessToken(ctx context.Context, in *AccessTokenRequest, opts ...grpc.CallOption) (*AccessTokenResponse, error)
 	ChangePassword(ctx context.Context, in *PasswordRequest, opts ...grpc.CallOption) (*PasswordResponse, error)
 	ForgotPassword(ctx context.Context, in *ForgotRequest, opts ...grpc.CallOption) (*ForgotResponse, error)
@@ -99,6 +101,16 @@ func (c *authClient) Logout(ctx context.Context, in *LogoutRequest, opts ...grpc
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(LogoutResponse)
 	err := c.cc.Invoke(ctx, Auth_Logout_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authClient) MassLogout(ctx context.Context, in *MassLogoutRequest, opts ...grpc.CallOption) (*MassLogoutRequest, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MassLogoutRequest)
+	err := c.cc.Invoke(ctx, Auth_MassLogout_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -223,6 +235,7 @@ type AuthServer interface {
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	CreateToken(context.Context, *TokenRequest) (*TokenResponse, error)
 	Logout(context.Context, *LogoutRequest) (*LogoutResponse, error)
+	MassLogout(context.Context, *MassLogoutRequest) (*MassLogoutRequest, error)
 	UpdateAccessToken(context.Context, *AccessTokenRequest) (*AccessTokenResponse, error)
 	ChangePassword(context.Context, *PasswordRequest) (*PasswordResponse, error)
 	ForgotPassword(context.Context, *ForgotRequest) (*ForgotResponse, error)
@@ -255,6 +268,9 @@ func (UnimplementedAuthServer) CreateToken(context.Context, *TokenRequest) (*Tok
 }
 func (UnimplementedAuthServer) Logout(context.Context, *LogoutRequest) (*LogoutResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
+}
+func (UnimplementedAuthServer) MassLogout(context.Context, *MassLogoutRequest) (*MassLogoutRequest, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MassLogout not implemented")
 }
 func (UnimplementedAuthServer) UpdateAccessToken(context.Context, *AccessTokenRequest) (*AccessTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateAccessToken not implemented")
@@ -378,6 +394,24 @@ func _Auth_Logout_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).Logout(ctx, req.(*LogoutRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Auth_MassLogout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MassLogoutRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).MassLogout(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_MassLogout_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).MassLogout(ctx, req.(*MassLogoutRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -602,6 +636,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Logout",
 			Handler:    _Auth_Logout_Handler,
+		},
+		{
+			MethodName: "MassLogout",
+			Handler:    _Auth_MassLogout_Handler,
 		},
 		{
 			MethodName: "UpdateAccessToken",

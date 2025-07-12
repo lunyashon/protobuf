@@ -26,9 +26,15 @@ service Auth {
     }
     rpc Logout (LogoutRequest) returns (LogoutResponse) {
         option (google.api.http) = {
-            post: "/v1/user/logout"
+            post: "/v1/user/logout.once"
             body: "*"
         };
+    }
+    rpc MassLogout (MassLogoutRequest) returns (MassLogoutRequest) {
+        option (google.api.http) = {
+            post: "/v1/user/logout.all"
+            body: "*"
+        }; 
     }
     rpc UpdateAccessToken (AccessTokenRequest) returns (AccessTokenResponse) {
         option (google.api.http) = {
@@ -178,7 +184,14 @@ message LogoutRequest {
 
 message LogoutResponse {
     bool success = 1;
-    string message = 2;
+}
+
+message MassLogoutRequest {
+    string refreshToken = 1;
+}
+
+message MassLogoutResponse {
+    bool success = 1;
 }
 
 message Empty {}

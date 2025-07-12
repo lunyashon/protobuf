@@ -112,7 +112,39 @@
         ]
       }
     },
-    "/v1/user/logout": {
+    "/v1/user/logout.all": {
+      "post": {
+        "operationId": "Auth_MassLogout",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MassLogoutRequest"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1MassLogoutRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
+    "/v1/user/logout.once": {
       "post": {
         "operationId": "Auth_Logout",
         "responses": {
@@ -597,8 +629,13 @@
       "properties": {
         "success": {
           "type": "boolean"
-        },
-        "message": {
+        }
+      }
+    },
+    "v1MassLogoutRequest": {
+      "type": "object",
+      "properties": {
+        "refreshToken": {
           "type": "string"
         }
       }
