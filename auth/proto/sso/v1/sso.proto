@@ -30,7 +30,7 @@ service Auth {
             body: "*"
         };
     }
-    rpc MassLogout (MassLogoutRequest) returns (MassLogoutRequest) {
+    rpc MassLogout (MassLogoutRequest) returns (MassLogoutResponse) {
         option (google.api.http) = {
             post: "/v1/user/logout.all"
             body: "*"

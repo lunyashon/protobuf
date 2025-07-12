@@ -1707,14 +1707,14 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x12AccessTokenRequest\x12\"\n" +
 	"\frefreshToken\x18\x01 \x01(\tR\frefreshToken\"7\n" +
 	"\x13AccessTokenResponse\x12 \n" +
-	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xf3\v\n" +
+	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xf4\v\n" +
 	"\x04Auth\x12c\n" +
 	"\bRegister\x12\x17.sso.v1.RegisterRequest\x1a\x18.sso.v1.RegisterResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1/user/{token}/register\x12O\n" +
 	"\x05Login\x12\x14.sso.v1.LoginRequest\x1a\x15.sso.v1.LoginResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/login\x12U\n" +
 	"\vCreateToken\x12\x14.sso.v1.TokenRequest\x1a\x15.sso.v1.TokenResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/token\x12X\n" +
-	"\x06Logout\x12\x15.sso.v1.LogoutRequest\x1a\x16.sso.v1.LogoutResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v1/user/logout.once\x12b\n" +
+	"\x06Logout\x12\x15.sso.v1.LogoutRequest\x1a\x16.sso.v1.LogoutResponse\"\x1f\x82\xd3\xe4\x93\x02\x19:\x01*\"\x14/v1/user/logout.once\x12c\n" +
 	"\n" +
-	"MassLogout\x12\x19.sso.v1.MassLogoutRequest\x1a\x19.sso.v1.MassLogoutRequest\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/user/logout.all\x12u\n" +
+	"MassLogout\x12\x19.sso.v1.MassLogoutRequest\x1a\x1a.sso.v1.MassLogoutResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/user/logout.all\x12u\n" +
 	"\x11UpdateAccessToken\x12\x1a.sso.v1.AccessTokenRequest\x1a\x1b.sso.v1.AccessTokenResponse\"'\x82\xd3\xe4\x93\x02!:\x01*\x1a\x1c/v1/user/update.access.token\x12h\n" +
 	"\x0eChangePassword\x12\x17.sso.v1.PasswordRequest\x1a\x18.sso.v1.PasswordResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v1/user/password.change\x12d\n" +
 	"\x0eForgotPassword\x12\x15.sso.v1.ForgotRequest\x1a\x16.sso.v1.ForgotResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/v1/user/password.forgot\x12^\n" +
@@ -1800,7 +1800,7 @@ var file_sso_v1_sso_proto_depIdxs = []int32{
 	17, // 19: sso.v1.Auth.Login:output_type -> sso.v1.LoginResponse
 	19, // 20: sso.v1.Auth.CreateToken:output_type -> sso.v1.TokenResponse
 	21, // 21: sso.v1.Auth.Logout:output_type -> sso.v1.LogoutResponse
-	22, // 22: sso.v1.Auth.MassLogout:output_type -> sso.v1.MassLogoutRequest
+	23, // 22: sso.v1.Auth.MassLogout:output_type -> sso.v1.MassLogoutResponse
 	32, // 23: sso.v1.Auth.UpdateAccessToken:output_type -> sso.v1.AccessTokenResponse
 	13, // 24: sso.v1.Auth.ChangePassword:output_type -> sso.v1.PasswordResponse
 	11, // 25: sso.v1.Auth.ForgotPassword:output_type -> sso.v1.ForgotResponse
