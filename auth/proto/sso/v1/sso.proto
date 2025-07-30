@@ -152,7 +152,6 @@ message RegisterRequest {
     string email = 2;
     string password = 3;
     string login = 4;
-    repeated string services = 5;
 }
 
 message RegisterResponse {

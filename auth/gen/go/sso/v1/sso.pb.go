@@ -685,7 +685,6 @@ type RegisterRequest struct {
 	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
 	Password      string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
 	Login         string                 `protobuf:"bytes,4,opt,name=login,proto3" json:"login,omitempty"`
-	Services      []string               `protobuf:"bytes,5,rep,name=services,proto3" json:"services,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -746,13 +745,6 @@ func (x *RegisterRequest) GetLogin() string {
 		return x.Login
 	}
 	return ""
-}
-
-func (x *RegisterRequest) GetServices() []string {
-	if x != nil {
-		return x.Services
-	}
-	return nil
 }
 
 type RegisterResponse struct {
@@ -1656,13 +1648,12 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\voldPassword\x18\x01 \x01(\tR\voldPassword\x12 \n" +
 	"\vnewPassword\x18\x02 \x01(\tR\vnewPassword\",\n" +
 	"\x10PasswordResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x8b\x01\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"o\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x03 \x01(\tR\bpassword\x12\x14\n" +
-	"\x05login\x18\x04 \x01(\tR\x05login\x12\x1a\n" +
-	"\bservices\x18\x05 \x03(\tR\bservices\"+\n" +
+	"\x05login\x18\x04 \x01(\tR\x05login\"+\n" +
 	"\x10RegisterResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x03R\x06userId\"@\n" +
 	"\fLoginRequest\x12\x14\n" +

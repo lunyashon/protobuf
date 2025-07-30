@@ -445,12 +445,6 @@
         },
         "login": {
           "type": "string"
-        },
-        "services": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         }
       }
     },
