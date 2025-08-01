@@ -783,9 +783,6 @@
     "v1TokenRequest": {
       "type": "object",
       "properties": {
-        "token": {
-          "type": "string"
-        },
         "services": {
           "type": "array",
           "items": {
@@ -798,8 +795,8 @@
     "v1TokenResponse": {
       "type": "object",
       "properties": {
-        "result": {
-          "type": "boolean"
+        "token": {
+          "type": "string"
         }
       }
     },

@@ -189,12 +189,11 @@ message LoginResponse {
 }
 
 message TokenRequest {
-    string token = 1;
-    repeated int32 services = 2;
+    repeated int32 services = 1;
 }
 
 message TokenResponse {
-    bool result = 1;
+    string token = 1;
 }
 
 message LogoutRequest {
