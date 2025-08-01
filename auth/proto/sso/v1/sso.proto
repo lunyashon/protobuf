@@ -82,9 +82,29 @@ service Auth {
             get: "/v1/user/profile"
         };
     }
+    rpc GetServices (ServicesRequest) returns (ServicesResponse) {
+        option (google.api.http) = {
+            get: "/v1/services"
+        };
+    }
     rpc ValidateToken (ValidateRequest) returns (ValidateResponse);
     rpc RefreshToken (RefreshRequest) returns (RefreshResponse);
     rpc GetJWKS (Empty) returns (JWKSResponse);
+}
+
+message ServicesRequest {
+    string name = 1;
+    int32 id = 2;
+}
+
+message ServicesResponse {
+    repeated StructureServices services = 1;
+}
+
+message StructureServices {
+    int32 id = 1;
+    string name = 2;
+    google.protobuf.Timestamp created_at = 3;
 }
 
 message ProfileRequest {}
@@ -170,7 +190,7 @@ message LoginResponse {
 
 message TokenRequest {
     string token = 1;
-    repeated string services = 2;
+    repeated int32 services = 2;
 }
 
 message TokenResponse {
