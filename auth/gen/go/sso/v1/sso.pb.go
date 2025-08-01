@@ -1053,8 +1053,7 @@ func (x *LoginResponse) GetRefreshToken() string {
 
 type TokenRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	Services      []int32                `protobuf:"varint,2,rep,packed,name=services,proto3" json:"services,omitempty"`
+	Services      []int32                `protobuf:"varint,1,rep,packed,name=services,proto3" json:"services,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1089,13 +1088,6 @@ func (*TokenRequest) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{21}
 }
 
-func (x *TokenRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
 func (x *TokenRequest) GetServices() []int32 {
 	if x != nil {
 		return x.Services
@@ -1105,7 +1097,7 @@ func (x *TokenRequest) GetServices() []int32 {
 
 type TokenResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Result        bool                   `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1140,11 +1132,11 @@ func (*TokenResponse) Descriptor() ([]byte, []int) {
 	return file_sso_v1_sso_proto_rawDescGZIP(), []int{22}
 }
 
-func (x *TokenResponse) GetResult() bool {
+func (x *TokenResponse) GetToken() string {
 	if x != nil {
-		return x.Result
+		return x.Token
 	}
-	return false
+	return ""
 }
 
 type LogoutRequest struct {
@@ -1827,12 +1819,11 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"U\n" +
 	"\rLoginResponse\x12 \n" +
 	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\x12\"\n" +
-	"\frefreshToken\x18\x02 \x01(\tR\frefreshToken\"@\n" +
-	"\fTokenRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\x12\x1a\n" +
-	"\bservices\x18\x02 \x03(\x05R\bservices\"'\n" +
-	"\rTokenResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\bR\x06result\"3\n" +
+	"\frefreshToken\x18\x02 \x01(\tR\frefreshToken\"*\n" +
+	"\fTokenRequest\x12\x1a\n" +
+	"\bservices\x18\x01 \x03(\x05R\bservices\"%\n" +
+	"\rTokenResponse\x12\x14\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"3\n" +
 	"\rLogoutRequest\x12\"\n" +
 	"\frefreshToken\x18\x01 \x01(\tR\frefreshToken\"*\n" +
 	"\x0eLogoutResponse\x12\x18\n" +
