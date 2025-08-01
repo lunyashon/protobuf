@@ -20,7 +20,7 @@ service Auth {
     }
     rpc CreateToken (TokenRequest) returns (TokenResponse) {
         option (google.api.http) = {
-            post: "/v1/user/token"
+            post: "/v1/token.create"
             body: "*"
         };
     }

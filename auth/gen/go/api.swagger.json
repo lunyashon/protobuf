@@ -53,6 +53,38 @@
         ]
       }
     },
+    "/v1/token.create": {
+      "post": {
+        "operationId": "Auth_CreateToken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TokenResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1TokenRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
     "/v1/user/email.confirm": {
       "post": {
         "operationId": "Auth_ConfirmEmail",
@@ -294,38 +326,6 @@
             }
           }
         },
-        "tags": [
-          "Auth"
-        ]
-      }
-    },
-    "/v1/user/token": {
-      "post": {
-        "operationId": "Auth_CreateToken",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1TokenResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/v1TokenRequest"
-            }
-          }
-        ],
         "tags": [
           "Auth"
         ]
