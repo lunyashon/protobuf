@@ -730,7 +730,8 @@
         "services": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "object",
+            "$ref": "#/definitions/v1Services"
           }
         },
         "sessions": {
@@ -770,6 +771,22 @@
       "type": "object",
       "properties": {
         "success": {
+          "type": "boolean"
+        }
+      }
+    },
+    "v1Services": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "active": {
           "type": "boolean"
         }
       }

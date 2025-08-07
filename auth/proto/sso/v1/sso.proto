@@ -118,8 +118,14 @@ message ProfileResponse {
     string name = 6;
     string las_name = 7;
     string phone = 8;
-    repeated string services = 9; 
+    repeated Services services = 9; 
     repeated Session sessions = 10;
+}
+
+message Services {
+    int32 id = 1;
+    google.protobuf.Timestamp expires_at = 2;
+    bool active = 3;
 }
 
 message Session {
