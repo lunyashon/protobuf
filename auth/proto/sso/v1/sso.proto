@@ -115,6 +115,18 @@ message ProfileResponse {
     string login = 3;
     google.protobuf.Timestamp createdAt = 4;
     bool confirmed = 5;
+    string name = 6;
+    string las_name = 7;
+    string phone = 8;
+    repeated string services = 9; 
+    repeated Session sessions = 10;
+}
+
+message Session {
+    string ip = 1;
+    string device = 2;
+    google.protobuf.Timestamp created = 3;
+    bool is_active = 4;
 }
 
 message CheckConfirmRequest {
