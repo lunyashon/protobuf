@@ -717,6 +717,28 @@
         },
         "confirmed": {
           "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "lasName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sessions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/v1Session"
+          }
         }
       }
     },
@@ -761,6 +783,24 @@
             "type": "object",
             "$ref": "#/definitions/v1StructureServices"
           }
+        }
+      }
+    },
+    "v1Session": {
+      "type": "object",
+      "properties": {
+        "ip": {
+          "type": "string"
+        },
+        "device": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "isActive": {
+          "type": "boolean"
         }
       }
     },
