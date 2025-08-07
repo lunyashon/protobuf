@@ -223,7 +223,7 @@ type ProfileResponse struct {
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
 	Confirmed     bool                   `protobuf:"varint,5,opt,name=confirmed,proto3" json:"confirmed,omitempty"`
 	Name          string                 `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`
-	LasName       string                 `protobuf:"bytes,7,opt,name=las_name,json=lasName,proto3" json:"las_name,omitempty"`
+	LastName      string                 `protobuf:"bytes,7,opt,name=last_name,json=lastName,proto3" json:"last_name,omitempty"`
 	Phone         string                 `protobuf:"bytes,8,opt,name=phone,proto3" json:"phone,omitempty"`
 	Services      []*Services            `protobuf:"bytes,9,rep,name=services,proto3" json:"services,omitempty"`
 	Sessions      []*Session             `protobuf:"bytes,10,rep,name=sessions,proto3" json:"sessions,omitempty"`
@@ -303,9 +303,9 @@ func (x *ProfileResponse) GetName() string {
 	return ""
 }
 
-func (x *ProfileResponse) GetLasName() string {
+func (x *ProfileResponse) GetLastName() string {
 	if x != nil {
-		return x.LasName
+		return x.LastName
 	}
 	return ""
 }
@@ -334,8 +334,9 @@ func (x *ProfileResponse) GetSessions() []*Session {
 type Services struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
-	Active        bool                   `protobuf:"varint,3,opt,name=active,proto3" json:"active,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	ExpiresAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
+	Active        bool                   `protobuf:"varint,4,opt,name=active,proto3" json:"active,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -375,6 +376,13 @@ func (x *Services) GetId() int32 {
 		return x.Id
 	}
 	return 0
+}
+
+func (x *Services) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
 }
 
 func (x *Services) GetExpiresAt() *timestamppb.Timestamp {
@@ -1942,24 +1950,25 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x129\n" +
 	"\n" +
 	"created_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\x10\n" +
-	"\x0eProfileRequest\"\xc5\x02\n" +
+	"\x0eProfileRequest\"\xc7\x02\n" +
 	"\x0fProfileResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x14\n" +
 	"\x05login\x18\x03 \x01(\tR\x05login\x128\n" +
 	"\tcreatedAt\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x1c\n" +
 	"\tconfirmed\x18\x05 \x01(\bR\tconfirmed\x12\x12\n" +
-	"\x04name\x18\x06 \x01(\tR\x04name\x12\x19\n" +
-	"\blas_name\x18\a \x01(\tR\alasName\x12\x14\n" +
+	"\x04name\x18\x06 \x01(\tR\x04name\x12\x1b\n" +
+	"\tlast_name\x18\a \x01(\tR\blastName\x12\x14\n" +
 	"\x05phone\x18\b \x01(\tR\x05phone\x12,\n" +
 	"\bservices\x18\t \x03(\v2\x10.sso.v1.ServicesR\bservices\x12+\n" +
 	"\bsessions\x18\n" +
-	" \x03(\v2\x0f.sso.v1.SessionR\bsessions\"m\n" +
+	" \x03(\v2\x0f.sso.v1.SessionR\bsessions\"\x81\x01\n" +
 	"\bServices\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x05R\x02id\x129\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x129\n" +
 	"\n" +
-	"expires_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12\x16\n" +
-	"\x06active\x18\x03 \x01(\bR\x06active\"\x84\x01\n" +
+	"expires_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12\x16\n" +
+	"\x06active\x18\x04 \x01(\bR\x06active\"\x84\x01\n" +
 	"\aSession\x12\x0e\n" +
 	"\x02ip\x18\x01 \x01(\tR\x02ip\x12\x16\n" +
 	"\x06device\x18\x02 \x01(\tR\x06device\x124\n" +

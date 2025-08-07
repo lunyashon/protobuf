@@ -721,7 +721,7 @@
         "name": {
           "type": "string"
         },
-        "lasName": {
+        "lastName": {
           "type": "string"
         },
         "phone": {
@@ -781,6 +781,9 @@
         "id": {
           "type": "integer",
           "format": "int32"
+        },
+        "name": {
+          "type": "string"
         },
         "expiresAt": {
           "type": "string",
