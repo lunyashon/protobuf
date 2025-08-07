@@ -2048,7 +2048,7 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x12AccessTokenRequest\x12\"\n" +
 	"\frefreshToken\x18\x01 \x01(\tR\frefreshToken\"7\n" +
 	"\x13AccessTokenResponse\x12 \n" +
-	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xce\f\n" +
+	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xee\f\n" +
 	"\x04Auth\x12c\n" +
 	"\bRegister\x12\x17.sso.v1.RegisterRequest\x1a\x18.sso.v1.RegisterResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1/user/{token}/register\x12O\n" +
 	"\x05Login\x12\x14.sso.v1.LoginRequest\x1a\x15.sso.v1.LoginResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/login\x12W\n" +
@@ -2065,9 +2065,9 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\rResetPassword\x12\x14.sso.v1.ResetRequest\x1a\x15.sso.v1.ResetResponse\"*\x82\xd3\xe4\x93\x02$:\x01*\x1a\x1f/v1/user/{token}/password.reset\x12W\n" +
 	"\n" +
 	"GetProfile\x12\x16.sso.v1.ProfileRequest\x1a\x17.sso.v1.ProfileResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/user/profile\x12V\n" +
-	"\vGetServices\x12\x17.sso.v1.ServicesRequest\x1a\x18.sso.v1.ServicesResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/services\x12B\n" +
-	"\rValidateToken\x12\x17.sso.v1.ValidateRequest\x1a\x18.sso.v1.ValidateResponse\x12?\n" +
-	"\fRefreshToken\x12\x16.sso.v1.RefreshRequest\x1a\x17.sso.v1.RefreshResponse\x12.\n" +
+	"\vGetServices\x12\x17.sso.v1.ServicesRequest\x1a\x18.sso.v1.ServicesResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/services\x12_\n" +
+	"\fRefreshToken\x12\x16.sso.v1.RefreshRequest\x1a\x17.sso.v1.RefreshResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x1a\x16/v1/user/token.refresh\x12B\n" +
+	"\rValidateToken\x12\x17.sso.v1.ValidateRequest\x1a\x18.sso.v1.ValidateResponse\x12.\n" +
 	"\aGetJWKS\x12\r.sso.v1.Empty\x1a\x14.sso.v1.JWKSResponseB\x0eZ\fsso/v1;ssov1b\x06proto3"
 
 var (
@@ -2147,8 +2147,8 @@ var file_sso_v1_sso_proto_depIdxs = []int32{
 	11, // 19: sso.v1.Auth.ResetPassword:input_type -> sso.v1.ResetRequest
 	3,  // 20: sso.v1.Auth.GetProfile:input_type -> sso.v1.ProfileRequest
 	0,  // 21: sso.v1.Auth.GetServices:input_type -> sso.v1.ServicesRequest
-	32, // 22: sso.v1.Auth.ValidateToken:input_type -> sso.v1.ValidateRequest
-	34, // 23: sso.v1.Auth.RefreshToken:input_type -> sso.v1.RefreshRequest
+	34, // 22: sso.v1.Auth.RefreshToken:input_type -> sso.v1.RefreshRequest
+	32, // 23: sso.v1.Auth.ValidateToken:input_type -> sso.v1.ValidateRequest
 	29, // 24: sso.v1.Auth.GetJWKS:input_type -> sso.v1.Empty
 	20, // 25: sso.v1.Auth.Register:output_type -> sso.v1.RegisterResponse
 	22, // 26: sso.v1.Auth.Login:output_type -> sso.v1.LoginResponse
@@ -2164,8 +2164,8 @@ var file_sso_v1_sso_proto_depIdxs = []int32{
 	12, // 36: sso.v1.Auth.ResetPassword:output_type -> sso.v1.ResetResponse
 	4,  // 37: sso.v1.Auth.GetProfile:output_type -> sso.v1.ProfileResponse
 	1,  // 38: sso.v1.Auth.GetServices:output_type -> sso.v1.ServicesResponse
-	33, // 39: sso.v1.Auth.ValidateToken:output_type -> sso.v1.ValidateResponse
-	35, // 40: sso.v1.Auth.RefreshToken:output_type -> sso.v1.RefreshResponse
+	35, // 39: sso.v1.Auth.RefreshToken:output_type -> sso.v1.RefreshResponse
+	33, // 40: sso.v1.Auth.ValidateToken:output_type -> sso.v1.ValidateResponse
 	30, // 41: sso.v1.Auth.GetJWKS:output_type -> sso.v1.JWKSResponse
 	25, // [25:42] is the sub-list for method output_type
 	8,  // [8:25] is the sub-list for method input_type

@@ -87,8 +87,12 @@ service Auth {
             get: "/v1/services"
         };
     }
+    rpc RefreshToken (RefreshRequest) returns (RefreshResponse) {
+        option (google.api.http) = {
+            put: "/v1/user/token.refresh"        
+        };
+    }
     rpc ValidateToken (ValidateRequest) returns (ValidateResponse);
-    rpc RefreshToken (RefreshRequest) returns (RefreshResponse);
     rpc GetJWKS (Empty) returns (JWKSResponse);
 }
 
