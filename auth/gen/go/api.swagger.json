@@ -149,6 +149,28 @@
         ]
       }
     },
+    "/v1/user/info": {
+      "get": {
+        "operationId": "Auth_GetMiniProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MiniProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
     "/v1/user/login": {
       "post": {
         "operationId": "Auth_Login",
@@ -317,28 +339,6 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/v1ProfileResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "Auth"
-        ]
-      }
-    },
-    "/v1/user/profile.mini": {
-      "get": {
-        "operationId": "Auth_GetMiniProfile",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/v1MiniProfileResponse"
             }
           },
           "default": {

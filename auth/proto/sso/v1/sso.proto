@@ -84,7 +84,7 @@ service Auth {
     }
     rpc GetMiniProfile (ProfileRequest) returns (MiniProfileResponse) {
         option (google.api.http) = {
-            get: "/v1/user/profile.mini"
+            get: "/v1/user/info"
         };
     }
     rpc GetServices (ServicesRequest) returns (ServicesResponse) {
