@@ -32,6 +32,7 @@ const (
 	Auth_CheckForgotToken_FullMethodName  = "/sso.v1.Auth/CheckForgotToken"
 	Auth_ResetPassword_FullMethodName     = "/sso.v1.Auth/ResetPassword"
 	Auth_GetProfile_FullMethodName        = "/sso.v1.Auth/GetProfile"
+	Auth_GetMiniProfile_FullMethodName    = "/sso.v1.Auth/GetMiniProfile"
 	Auth_GetServices_FullMethodName       = "/sso.v1.Auth/GetServices"
 	Auth_RefreshToken_FullMethodName      = "/sso.v1.Auth/RefreshToken"
 	Auth_ValidateToken_FullMethodName     = "/sso.v1.Auth/ValidateToken"
@@ -55,6 +56,7 @@ type AuthClient interface {
 	CheckForgotToken(ctx context.Context, in *CheckForgotRequest, opts ...grpc.CallOption) (*CheckForgotResponse, error)
 	ResetPassword(ctx context.Context, in *ResetRequest, opts ...grpc.CallOption) (*ResetResponse, error)
 	GetProfile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*ProfileResponse, error)
+	GetMiniProfile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*MiniProfileResponse, error)
 	GetServices(ctx context.Context, in *ServicesRequest, opts ...grpc.CallOption) (*ServicesResponse, error)
 	RefreshToken(ctx context.Context, in *RefreshRequest, opts ...grpc.CallOption) (*RefreshResponse, error)
 	ValidateToken(ctx context.Context, in *ValidateRequest, opts ...grpc.CallOption) (*ValidateResponse, error)
@@ -199,6 +201,16 @@ func (c *authClient) GetProfile(ctx context.Context, in *ProfileRequest, opts ..
 	return out, nil
 }
 
+func (c *authClient) GetMiniProfile(ctx context.Context, in *ProfileRequest, opts ...grpc.CallOption) (*MiniProfileResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MiniProfileResponse)
+	err := c.cc.Invoke(ctx, Auth_GetMiniProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authClient) GetServices(ctx context.Context, in *ServicesRequest, opts ...grpc.CallOption) (*ServicesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ServicesResponse)
@@ -256,6 +268,7 @@ type AuthServer interface {
 	CheckForgotToken(context.Context, *CheckForgotRequest) (*CheckForgotResponse, error)
 	ResetPassword(context.Context, *ResetRequest) (*ResetResponse, error)
 	GetProfile(context.Context, *ProfileRequest) (*ProfileResponse, error)
+	GetMiniProfile(context.Context, *ProfileRequest) (*MiniProfileResponse, error)
 	GetServices(context.Context, *ServicesRequest) (*ServicesResponse, error)
 	RefreshToken(context.Context, *RefreshRequest) (*RefreshResponse, error)
 	ValidateToken(context.Context, *ValidateRequest) (*ValidateResponse, error)
@@ -308,6 +321,9 @@ func (UnimplementedAuthServer) ResetPassword(context.Context, *ResetRequest) (*R
 }
 func (UnimplementedAuthServer) GetProfile(context.Context, *ProfileRequest) (*ProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProfile not implemented")
+}
+func (UnimplementedAuthServer) GetMiniProfile(context.Context, *ProfileRequest) (*MiniProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMiniProfile not implemented")
 }
 func (UnimplementedAuthServer) GetServices(context.Context, *ServicesRequest) (*ServicesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetServices not implemented")
@@ -576,6 +592,24 @@ func _Auth_GetProfile_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Auth_GetMiniProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServer).GetMiniProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Auth_GetMiniProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServer).GetMiniProfile(ctx, req.(*ProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Auth_GetServices_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ServicesRequest)
 	if err := dec(in); err != nil {
@@ -706,6 +740,10 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetProfile",
 			Handler:    _Auth_GetProfile_Handler,
+		},
+		{
+			MethodName: "GetMiniProfile",
+			Handler:    _Auth_GetMiniProfile_Handler,
 		},
 		{
 			MethodName: "GetServices",
