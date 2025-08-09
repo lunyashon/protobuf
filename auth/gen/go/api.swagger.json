@@ -331,6 +331,28 @@
         ]
       }
     },
+    "/v1/user/profile.mini": {
+      "get": {
+        "operationId": "Auth_GetMiniProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MiniProfileResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
     "/v1/user/token.refresh": {
       "put": {
         "operationId": "Auth_RefreshToken",
@@ -706,6 +728,24 @@
       "properties": {
         "success": {
           "type": "boolean"
+        }
+      }
+    },
+    "v1MiniProfileResponse": {
+      "type": "object",
+      "properties": {
+        "confirmed": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

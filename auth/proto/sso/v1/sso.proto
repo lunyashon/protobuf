@@ -82,6 +82,11 @@ service Auth {
             get: "/v1/user/profile"
         };
     }
+    rpc GetMiniProfile (ProfileRequest) returns (MiniProfileResponse) {
+        option (google.api.http) = {
+            get: "/v1/user/profile.mini"
+        };
+    }
     rpc GetServices (ServicesRequest) returns (ServicesResponse) {
         option (google.api.http) = {
             get: "/v1/services"
@@ -109,6 +114,13 @@ message StructureServices {
     int32 id = 1;
     string name = 2;
     google.protobuf.Timestamp created_at = 3;
+}
+
+message MiniProfileResponse {
+    bool confirmed = 1;
+    string name = 2;
+    string photo = 3;
+    int64 id = 4;
 }
 
 message ProfileRequest {}
