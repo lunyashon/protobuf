@@ -770,6 +770,9 @@
             "type": "object",
             "$ref": "#/definitions/v1Session"
           }
+        },
+        "photo": {
+          "type": "string"
         }
       }
     },

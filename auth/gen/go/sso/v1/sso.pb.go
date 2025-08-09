@@ -227,6 +227,7 @@ type ProfileResponse struct {
 	Phone         string                 `protobuf:"bytes,8,opt,name=phone,proto3" json:"phone,omitempty"`
 	Services      []*Services            `protobuf:"bytes,9,rep,name=services,proto3" json:"services,omitempty"`
 	Sessions      []*Session             `protobuf:"bytes,10,rep,name=sessions,proto3" json:"sessions,omitempty"`
+	Photo         string                 `protobuf:"bytes,11,opt,name=photo,proto3" json:"photo,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -329,6 +330,13 @@ func (x *ProfileResponse) GetSessions() []*Session {
 		return x.Sessions
 	}
 	return nil
+}
+
+func (x *ProfileResponse) GetPhoto() string {
+	if x != nil {
+		return x.Photo
+	}
+	return ""
 }
 
 type Services struct {
@@ -1950,7 +1958,7 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x129\n" +
 	"\n" +
 	"created_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\x10\n" +
-	"\x0eProfileRequest\"\xc7\x02\n" +
+	"\x0eProfileRequest\"\xdd\x02\n" +
 	"\x0fProfileResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x14\n" +
@@ -1962,7 +1970,8 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x05phone\x18\b \x01(\tR\x05phone\x12,\n" +
 	"\bservices\x18\t \x03(\v2\x10.sso.v1.ServicesR\bservices\x12+\n" +
 	"\bsessions\x18\n" +
-	" \x03(\v2\x0f.sso.v1.SessionR\bsessions\"\x81\x01\n" +
+	" \x03(\v2\x0f.sso.v1.SessionR\bsessions\x12\x14\n" +
+	"\x05photo\x18\v \x01(\tR\x05photo\"\x81\x01\n" +
 	"\bServices\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x129\n" +

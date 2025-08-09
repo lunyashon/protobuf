@@ -124,6 +124,7 @@ message ProfileResponse {
     string phone = 8;
     repeated Services services = 9; 
     repeated Session sessions = 10;
+    string photo = 11;
 }
 
 message Services {
