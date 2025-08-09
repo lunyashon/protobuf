@@ -2130,7 +2130,7 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x12AccessTokenRequest\x12\"\n" +
 	"\frefreshToken\x18\x01 \x01(\tR\frefreshToken\"7\n" +
 	"\x13AccessTokenResponse\x12 \n" +
-	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xd4\r\n" +
+	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken2\xcc\r\n" +
 	"\x04Auth\x12c\n" +
 	"\bRegister\x12\x17.sso.v1.RegisterRequest\x1a\x18.sso.v1.RegisterResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1/user/{token}/register\x12O\n" +
 	"\x05Login\x12\x14.sso.v1.LoginRequest\x1a\x15.sso.v1.LoginResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/user/login\x12W\n" +
@@ -2146,8 +2146,8 @@ const file_sso_v1_sso_proto_rawDesc = "" +
 	"\x10CheckForgotToken\x12\x1a.sso.v1.CheckForgotRequest\x1a\x1b.sso.v1.CheckForgotResponse\"4\x82\xd3\xe4\x93\x02.\x12,/v1/user/{token}/password.forgot.check.token\x12h\n" +
 	"\rResetPassword\x12\x14.sso.v1.ResetRequest\x1a\x15.sso.v1.ResetResponse\"*\x82\xd3\xe4\x93\x02$:\x01*\x1a\x1f/v1/user/{token}/password.reset\x12W\n" +
 	"\n" +
-	"GetProfile\x12\x16.sso.v1.ProfileRequest\x1a\x17.sso.v1.ProfileResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/user/profile\x12d\n" +
-	"\x0eGetMiniProfile\x12\x16.sso.v1.ProfileRequest\x1a\x1b.sso.v1.MiniProfileResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/user/profile.mini\x12V\n" +
+	"GetProfile\x12\x16.sso.v1.ProfileRequest\x1a\x17.sso.v1.ProfileResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/user/profile\x12\\\n" +
+	"\x0eGetMiniProfile\x12\x16.sso.v1.ProfileRequest\x1a\x1b.sso.v1.MiniProfileResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/v1/user/info\x12V\n" +
 	"\vGetServices\x12\x17.sso.v1.ServicesRequest\x1a\x18.sso.v1.ServicesResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/services\x12_\n" +
 	"\fRefreshToken\x12\x16.sso.v1.RefreshRequest\x1a\x17.sso.v1.RefreshResponse\"\x1e\x82\xd3\xe4\x93\x02\x18\x1a\x16/v1/user/token.refresh\x12B\n" +
 	"\rValidateToken\x12\x17.sso.v1.ValidateRequest\x1a\x18.sso.v1.ValidateResponse\x12.\n" +
