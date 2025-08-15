@@ -2,4 +2,4 @@
     protobuf files
 
 ## QUICK START
-    cd auth/go_task & task generate
+    cd auth/go_task && task generate
